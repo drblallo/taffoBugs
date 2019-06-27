@@ -1,0 +1,2279 @@
+; ModuleID = './IR_f312ec7f-235b-47f9-a64b-ed1c81c88ddb_3_vra.bc'
+source_filename = "llvm-link"
+target datalayout = "e-m:e-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-unknown-linux-gnu"
+
+%struct.OptionData_ = type { float, float, float, float, i8, float, float }
+%"class.std::ios_base::Init" = type { i8 }
+%"class.std::basic_ostream" = type { i32 (...)**, %"class.std::basic_ios" }
+%"class.std::basic_ios" = type { %"class.std::ios_base", %"class.std::basic_ostream"*, i8, i8, %"class.std::basic_streambuf"*, %"class.std::ctype"*, %"class.std::num_put"*, %"class.std::num_put"* }
+%"class.std::ios_base" = type { i32 (...)**, i64, i64, i32, i32, i32, %"struct.std::ios_base::_Callback_list"*, %"struct.std::ios_base::_Words", [8 x %"struct.std::ios_base::_Words"], i32, %"struct.std::ios_base::_Words"*, %"class.std::locale" }
+%"struct.std::ios_base::_Callback_list" = type { %"struct.std::ios_base::_Callback_list"*, void (i32, %"class.std::ios_base"*, i32)*, i32, i32 }
+%"struct.std::ios_base::_Words" = type { i8*, i64 }
+%"class.std::locale" = type { %"class.std::locale::_Impl"* }
+%"class.std::locale::_Impl" = type { i32, %"class.std::locale::facet"**, i64, %"class.std::locale::facet"**, i8** }
+%"class.std::locale::facet" = type <{ i32 (...)**, i32, [4 x i8] }>
+%"class.std::basic_streambuf" = type { i32 (...)**, i8*, i8*, i8*, i8*, i8*, i8*, %"class.std::locale" }
+%"class.std::ctype" = type <{ %"class.std::locale::facet.base", [4 x i8], %struct.__locale_struct*, i8, [7 x i8], i32*, i32*, i16*, i8, [256 x i8], [256 x i8], i8, [6 x i8] }>
+%"class.std::locale::facet.base" = type <{ i32 (...)**, i32 }>
+%struct.__locale_struct = type { [13 x %struct.__locale_data*], i16*, i32*, i32*, [13 x i8*] }
+%struct.__locale_data = type opaque
+%"class.std::num_put" = type { %"class.std::locale::facet.base", [4 x i8] }
+%struct._IO_FILE = type { i32, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, %struct._IO_marker*, %struct._IO_FILE*, i32, i32, i64, i16, i8, [1 x i8], i8*, i64, i8*, i8*, i8*, i8*, i64, i32, [20 x i8] }
+%struct._IO_marker = type { %struct._IO_marker*, %struct._IO_FILE*, i32 }
+%class.AxBenchTimer = type { %struct.timespec }
+%struct.timespec = type { i64, i64 }
+
+$_ZSt3expf = comdat any
+
+$_ZSt4sqrtf = comdat any
+
+$_ZSt3logf = comdat any
+
+$_ZN12AxBenchTimerC2Ev = comdat any
+
+$_ZN12AxBenchTimer20nanosecondsSinceInitEv = comdat any
+
+$_ZN12AxBenchTimer5resetEv = comdat any
+
+@data = dso_local global %struct.OptionData_* null, align 8, !taffo.info !0
+@s = dso_local global float* null, align 8, !taffo.info !0
+@stk = dso_local global float* null, align 8, !taffo.info !0
+@prices = dso_local global float* null, align 8, !taffo.info !2
+@numOptions = dso_local global i32 0, align 4, !taffo.info !0
+@otype = dso_local global i32* null, align 8, !taffo.info !0
+@sptprice = dso_local global float* null, align 8, !taffo.info !4, !taffo.initweight !8
+@strike = dso_local global float* null, align 8, !taffo.info !9, !taffo.initweight !8
+@rate = dso_local global float* null, align 8, !taffo.info !11, !taffo.initweight !8
+@volatility = dso_local global float* null, align 8, !taffo.info !14, !taffo.initweight !8
+@otime = dso_local global float* null, align 8, !taffo.info !16, !taffo.initweight !8
+@numError = dso_local global i32 0, align 4, !taffo.info !0
+@llvm.global_ctors = appending global [1 x { i32, void ()*, i8* }] [{ i32, void ()*, i8* } { i32 65535, void ()* @_GLOBAL__sub_I_0_f312ec7f_235b_47f9_a64b_ed1c81c88ddb.cpp, i8* null }]
+@_ZStL8__ioinit = internal global %"class.std::ios_base::Init" zeroinitializer, align 1, !taffo.structinfo !18
+@__dso_handle = external hidden global i8
+@llvm.global.annotations = appending global [5 x { i8*, i8*, i8*, i32 }] [{ i8*, i8*, i8*, i32 } { i8* bitcast (float** @sptprice to i8*), i8* getelementptr inbounds ([53 x i8], [53 x i8]* @.str, i32 0, i32 0), i8* getelementptr inbounds ([21 x i8], [21 x i8]* @.str.1, i32 0, i32 0), i32 56 }, { i8*, i8*, i8*, i32 } { i8* bitcast (float** @strike to i8*), i8* getelementptr inbounds ([53 x i8], [53 x i8]* @.str.2, i32 0, i32 0), i8* getelementptr inbounds ([21 x i8], [21 x i8]* @.str.1, i32 0, i32 0), i32 57 }, { i8*, i8*, i8*, i32 } { i8* bitcast (float** @rate to i8*), i8* getelementptr inbounds ([51 x i8], [51 x i8]* @.str.3, i32 0, i32 0), i8* getelementptr inbounds ([21 x i8], [21 x i8]* @.str.1, i32 0, i32 0), i32 58 }, { i8*, i8*, i8*, i32 } { i8* bitcast (float** @volatility to i8*), i8* getelementptr inbounds ([53 x i8], [53 x i8]* @.str.4, i32 0, i32 0), i8* getelementptr inbounds ([21 x i8], [21 x i8]* @.str.1, i32 0, i32 0), i32 59 }, { i8*, i8*, i8*, i32 } { i8* bitcast (float** @otime to i8*), i8* getelementptr inbounds ([51 x i8], [51 x i8]* @.str.5, i32 0, i32 0), i8* getelementptr inbounds ([21 x i8], [21 x i8]* @.str.1, i32 0, i32 0), i32 60 }], section "llvm.metadata"
+@.str = private unnamed_addr constant [53 x i8] c"scalar(range(0.350000, 0.840000) error(0.00000001) )\00", section "llvm.metadata", !taffo.info !19
+@.str.1 = private unnamed_addr constant [21 x i8] c"src/blackscholes.cpp\00", section "llvm.metadata", !taffo.info !19
+@.str.2 = private unnamed_addr constant [53 x i8] c"scalar(range(0.340000, 0.920000) error(0.00000001) )\00", section "llvm.metadata", !taffo.info !19
+@.str.3 = private unnamed_addr constant [51 x i8] c"scalar(range(0.027500, 0.100000) error(0.000000) )\00", section "llvm.metadata", !taffo.info !19
+@.str.4 = private unnamed_addr constant [53 x i8] c"scalar(range(0.050000, 0.650000) error(0.00000001) )\00", section "llvm.metadata", !taffo.info !19
+@.str.5 = private unnamed_addr constant [51 x i8] c"scalar(range(0.050000, 1.000000) error(0.000000) )\00", section "llvm.metadata", !taffo.info !19
+@.str.6 = private unnamed_addr constant [9 x i8] c"scalar()\00", section "llvm.metadata", !taffo.info !19
+@.str.7 = private unnamed_addr constant [30 x i8] c"target('price_orig') scalar()\00", section "llvm.metadata", !taffo.info !21
+@.str.8 = private unnamed_addr constant [51 x i8] c"scalar(range(0.000000, 1.000000) error(0.000000) )\00", section "llvm.metadata", !taffo.info !19
+@.str.9 = private unnamed_addr constant [2 x i8] c"r\00", align 1, !taffo.info !23
+@.str.10 = private unnamed_addr constant [34 x i8] c"ERROR: Unable to open file `%s'.\0A\00", align 1, !taffo.info !21
+@.str.11 = private unnamed_addr constant [3 x i8] c"%i\00", align 1, !taffo.info !25
+@.str.12 = private unnamed_addr constant [39 x i8] c"ERROR: Unable to read from file `%s'.\0A\00", align 1, !taffo.info !21
+@.str.13 = private unnamed_addr constant [7 x i8] c"%f %f \00", align 1, !taffo.info !27
+@.str.14 = private unnamed_addr constant [21 x i8] c"%f %f %f %f %c %f %f\00", align 1, !taffo.info !27
+@.str.15 = private unnamed_addr constant [35 x i8] c"ERROR: Unable to close file `%s'.\0A\00", align 1, !taffo.info !21
+@_ZSt4cout = external dso_local global %"class.std::basic_ostream", align 8
+@.str.16 = private unnamed_addr constant [15 x i8] c"kernel time = \00", align 1, !taffo.info !21
+@.str.17 = private unnamed_addr constant [4 x i8] c" s\0A\00", align 1, !taffo.info !19
+@.str.18 = private unnamed_addr constant [2 x i8] c"w\00", align 1, !taffo.info !29
+@.str.19 = private unnamed_addr constant [38 x i8] c"ERROR: Unable to write to file `%s'.\0A\00", align 1, !taffo.info !29
+@.str.20 = private unnamed_addr constant [7 x i8] c"%.18f\0A\00", align 1, !taffo.info !27
+
+; Function Attrs: noinline uwtable
+define internal void @_GLOBAL__sub_I_0_f312ec7f_235b_47f9_a64b_ed1c81c88ddb.cpp() #0 section ".text.startup" !taffo.initweight !33 !taffo.funinfo !33 {
+  call void @__cxx_global_var_init()
+  ret void
+}
+
+; Function Attrs: noinline uwtable
+define internal void @__cxx_global_var_init() #0 section ".text.startup" !taffo.initweight !33 !taffo.funinfo !33 {
+  call void @_ZNSt8ios_base4InitC1Ev(%"class.std::ios_base::Init"* @_ZStL8__ioinit)
+  %1 = call i32 @__cxa_atexit(void (i8*)* bitcast (void (%"class.std::ios_base::Init"*)* @_ZNSt8ios_base4InitD1Ev to void (i8*)*), i8* getelementptr inbounds (%"class.std::ios_base::Init", %"class.std::ios_base::Init"* @_ZStL8__ioinit, i32 0, i32 0), i8* @__dso_handle) #3
+  ret void
+}
+
+declare !taffo.initweight !34 !taffo.funinfo !35 dso_local void @_ZNSt8ios_base4InitC1Ev(%"class.std::ios_base::Init"*) unnamed_addr #1
+
+; Function Attrs: nounwind
+declare !taffo.initweight !34 !taffo.funinfo !35 dso_local void @_ZNSt8ios_base4InitD1Ev(%"class.std::ios_base::Init"*) unnamed_addr #2
+
+; Function Attrs: nounwind
+declare !taffo.initweight !36 !taffo.funinfo !37 dso_local i32 @__cxa_atexit(void (i8*)*, i8*, i8*) #3
+
+; Function Attrs: noinline uwtable
+define dso_local float @_Z4CNDFf(float) #0 !taffo.initweight !38 !taffo.funinfo !39 !taffo.equivalentChild !41 {
+  %2 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %3 = alloca i32, align 4
+  %4 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %5 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %6 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %7 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %8 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %9 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %10 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %11 = alloca float, align 4
+  %12 = alloca float, align 4
+  %13 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %14 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %15 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %16 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  store float %0, float* %2, align 4, !taffo.info !40, !taffo.initweight !38
+  %17 = bitcast float* %2 to i8*, !taffo.info !40, !taffo.initweight !38
+  %18 = bitcast float* %4 to i8*, !taffo.info !40, !taffo.initweight !38
+  %19 = bitcast float* %5 to i8*, !taffo.info !40, !taffo.initweight !38
+  %20 = bitcast float* %6 to i8*, !taffo.info !40, !taffo.initweight !38
+  %21 = bitcast float* %7 to i8*, !taffo.info !40, !taffo.initweight !38
+  %22 = bitcast float* %8 to i8*, !taffo.info !40, !taffo.initweight !38
+  %23 = bitcast float* %9 to i8*, !taffo.info !40, !taffo.initweight !38
+  %24 = bitcast float* %10 to i8*, !taffo.info !40, !taffo.initweight !38
+  %25 = bitcast float* %13 to i8*, !taffo.info !40, !taffo.initweight !38
+  %26 = bitcast float* %14 to i8*, !taffo.info !40, !taffo.initweight !38
+  %27 = bitcast float* %15 to i8*, !taffo.info !40, !taffo.initweight !38
+  %28 = bitcast float* %16 to i8*, !taffo.info !40, !taffo.initweight !38
+  %29 = load float, float* %2, align 4, !taffo.info !40, !taffo.initweight !38
+  %30 = fpext float %29 to double, !taffo.info !40, !taffo.initweight !42
+  %31 = fcmp olt double %30, 0.000000e+00, !taffo.info !40, !taffo.initweight !43
+  br i1 %31, label %32, label %35, !taffo.info !40, !taffo.initweight !44
+
+; <label>:32:                                     ; preds = %1
+  %33 = load float, float* %2, align 4, !taffo.info !40, !taffo.initweight !38
+  %34 = fsub float -0.000000e+00, %33, !taffo.info !40, !taffo.initweight !42
+  store float %34, float* %2, align 4, !taffo.info !40, !taffo.initweight !38
+  store i32 1, i32* %3, align 4
+  br label %36
+
+; <label>:35:                                     ; preds = %1
+  store i32 0, i32* %3, align 4
+  br label %36
+
+; <label>:36:                                     ; preds = %35, %32
+  %37 = load float, float* %2, align 4, !taffo.info !40, !taffo.initweight !38
+  store float %37, float* %5, align 4, !taffo.info !40, !taffo.initweight !38
+  %38 = load float, float* %2, align 4, !taffo.info !40, !taffo.initweight !38
+  %39 = load float, float* %2, align 4, !taffo.info !40, !taffo.initweight !38
+  %40 = fmul float %38, %39, !taffo.info !40, !taffo.initweight !42
+  %41 = fmul float -5.000000e-01, %40, !taffo.info !40, !taffo.initweight !43
+  %42 = call float @_ZSt3expf.21(float %41), !taffo.info !40, !taffo.initweight !44, !taffo.originalCall !45
+  store float %42, float* %7, align 4, !taffo.info !40, !taffo.initweight !38
+  %43 = load float, float* %7, align 4, !taffo.info !40, !taffo.initweight !38
+  store float %43, float* %6, align 4, !taffo.info !40, !taffo.initweight !38
+  %44 = load float, float* %6, align 4, !taffo.info !40, !taffo.initweight !38
+  %45 = fpext float %44 to double, !taffo.info !40, !taffo.initweight !42
+  %46 = fmul double %45, 0x3FD9884533D43651, !taffo.info !40, !taffo.initweight !43
+  %47 = fptrunc double %46 to float, !taffo.info !40, !taffo.initweight !44
+  store float %47, float* %6, align 4, !taffo.info !40, !taffo.initweight !38
+  %48 = load float, float* %5, align 4, !taffo.info !40, !taffo.initweight !38
+  %49 = fpext float %48 to double, !taffo.info !40, !taffo.initweight !42
+  %50 = fmul double 0x3FCDA6711871100E, %49, !taffo.info !40, !taffo.initweight !43
+  %51 = fptrunc double %50 to float, !taffo.info !40, !taffo.initweight !44
+  store float %51, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %52 = load float, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %53 = fpext float %52 to double, !taffo.info !40, !taffo.initweight !42
+  %54 = fadd double 1.000000e+00, %53, !taffo.info !40, !taffo.initweight !43
+  %55 = fptrunc double %54 to float, !taffo.info !40, !taffo.initweight !44
+  store float %55, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %56 = load float, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %57 = fpext float %56 to double, !taffo.info !40, !taffo.initweight !42
+  %58 = fdiv double 1.000000e+00, %57, !taffo.info !40, !taffo.initweight !43
+  %59 = fptrunc double %58 to float, !taffo.info !40, !taffo.initweight !44
+  store float %59, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %60 = load float, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %61 = load float, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %62 = fmul float %60, %61, !taffo.info !40, !taffo.initweight !42
+  store float %62, float* %9, align 4, !taffo.info !40, !taffo.initweight !38
+  %63 = load float, float* %9, align 4, !taffo.info !40, !taffo.initweight !38
+  %64 = load float, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %65 = fmul float %63, %64, !taffo.info !40, !taffo.initweight !42
+  store float %65, float* %10, align 4, !taffo.info !40, !taffo.initweight !38
+  %66 = load float, float* %10, align 4, !taffo.info !40, !taffo.initweight !38
+  %67 = load float, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %68 = fmul float %66, %67, !taffo.info !40, !taffo.initweight !42
+  store float %68, float* %11, align 4, !taffo.info !40, !taffo.initweight !43
+  %69 = load float, float* %11, align 4
+  %70 = load float, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %71 = fmul float %69, %70, !taffo.info !40, !taffo.initweight !42
+  store float %71, float* %12, align 4, !taffo.info !40, !taffo.initweight !43
+  %72 = load float, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %73 = fpext float %72 to double, !taffo.info !40, !taffo.initweight !42
+  %74 = fmul double %73, 0x3FD470BF3A92F8EC, !taffo.info !40, !taffo.initweight !43
+  %75 = fptrunc double %74 to float, !taffo.info !40, !taffo.initweight !44
+  store float %75, float* %14, align 4, !taffo.info !40, !taffo.initweight !38
+  %76 = load float, float* %9, align 4, !taffo.info !40, !taffo.initweight !38
+  %77 = fpext float %76 to double, !taffo.info !40, !taffo.initweight !42
+  %78 = fmul double %77, 0xBFD6D1F0E5A8325B, !taffo.info !40, !taffo.initweight !43
+  %79 = fptrunc double %78 to float, !taffo.info !40, !taffo.initweight !44
+  store float %79, float* %15, align 4, !taffo.info !40, !taffo.initweight !38
+  %80 = load float, float* %10, align 4, !taffo.info !40, !taffo.initweight !38
+  %81 = fpext float %80 to double, !taffo.info !40, !taffo.initweight !42
+  %82 = fmul double %81, 0x3FFC80EF025F5E68, !taffo.info !40, !taffo.initweight !43
+  %83 = fptrunc double %82 to float, !taffo.info !40, !taffo.initweight !44
+  store float %83, float* %16, align 4, !taffo.info !40, !taffo.initweight !38
+  %84 = load float, float* %15, align 4, !taffo.info !40, !taffo.initweight !38
+  %85 = load float, float* %16, align 4, !taffo.info !40, !taffo.initweight !38
+  %86 = fadd float %84, %85, !taffo.info !40, !taffo.initweight !42
+  store float %86, float* %15, align 4, !taffo.info !40, !taffo.initweight !38
+  %87 = load float, float* %11, align 4
+  %88 = fpext float %87 to double
+  %89 = fmul double %88, 0xBFFD23DD4EF278D0
+  %90 = fptrunc double %89 to float
+  store float %90, float* %16, align 4, !taffo.info !40, !taffo.initweight !38
+  %91 = load float, float* %15, align 4, !taffo.info !40, !taffo.initweight !38
+  %92 = load float, float* %16, align 4, !taffo.info !40, !taffo.initweight !38
+  %93 = fadd float %91, %92, !taffo.info !40, !taffo.initweight !42
+  store float %93, float* %15, align 4, !taffo.info !40, !taffo.initweight !38
+  %94 = load float, float* %12, align 4
+  %95 = fpext float %94 to double
+  %96 = fmul double %95, 0x3FF548CDD6F42943
+  %97 = fptrunc double %96 to float
+  store float %97, float* %16, align 4, !taffo.info !40, !taffo.initweight !38
+  %98 = load float, float* %15, align 4, !taffo.info !40, !taffo.initweight !38
+  %99 = load float, float* %16, align 4, !taffo.info !40, !taffo.initweight !38
+  %100 = fadd float %98, %99, !taffo.info !40, !taffo.initweight !42
+  store float %100, float* %15, align 4, !taffo.info !40, !taffo.initweight !38
+  %101 = load float, float* %15, align 4, !taffo.info !40, !taffo.initweight !38
+  %102 = load float, float* %14, align 4, !taffo.info !40, !taffo.initweight !38
+  %103 = fadd float %101, %102, !taffo.info !40, !taffo.initweight !42
+  store float %103, float* %14, align 4, !taffo.info !40, !taffo.initweight !38
+  %104 = load float, float* %14, align 4, !taffo.info !40, !taffo.initweight !38
+  %105 = load float, float* %6, align 4, !taffo.info !40, !taffo.initweight !38
+  %106 = fmul float %104, %105, !taffo.info !40, !taffo.initweight !42
+  store float %106, float* %13, align 4, !taffo.info !40, !taffo.initweight !38
+  %107 = load float, float* %13, align 4, !taffo.info !40, !taffo.initweight !38
+  %108 = fpext float %107 to double, !taffo.info !40, !taffo.initweight !42
+  %109 = fsub double 1.000000e+00, %108, !taffo.info !40, !taffo.initweight !43
+  %110 = fptrunc double %109 to float, !taffo.info !40, !taffo.initweight !44
+  store float %110, float* %13, align 4, !taffo.info !40, !taffo.initweight !38
+  %111 = load float, float* %13, align 4, !taffo.info !40, !taffo.initweight !38
+  store float %111, float* %4, align 4, !taffo.info !40, !taffo.initweight !38
+  %112 = load i32, i32* %3, align 4
+  %113 = icmp ne i32 %112, 0
+  br i1 %113, label %114, label %119
+
+; <label>:114:                                    ; preds = %36
+  %115 = load float, float* %4, align 4, !taffo.info !40, !taffo.initweight !38
+  %116 = fpext float %115 to double, !taffo.info !40, !taffo.initweight !42
+  %117 = fsub double 1.000000e+00, %116, !taffo.info !40, !taffo.initweight !43
+  %118 = fptrunc double %117 to float, !taffo.info !40, !taffo.initweight !44
+  store float %118, float* %4, align 4, !taffo.info !40, !taffo.initweight !38
+  br label %119
+
+; <label>:119:                                    ; preds = %114, %36
+  %120 = load float, float* %4, align 4, !taffo.info !40, !taffo.initweight !38
+  ret float %120, !taffo.info !40, !taffo.initweight !42
+}
+
+; Function Attrs: nounwind
+declare !taffo.initweight !46 !taffo.funinfo !47 void @llvm.var.annotation(i8*, i8*, i8*, i32) #3
+
+; Function Attrs: noinline nounwind uwtable
+define linkonce_odr dso_local float @_ZSt3expf(float) #4 comdat !taffo.initweight !34 !taffo.funinfo !35 !taffo.equivalentChild !48 {
+  %2 = alloca float, align 4
+  store float %0, float* %2, align 4
+  %3 = load float, float* %2, align 4
+  %4 = call float @expf(float %3) #3
+  ret float %4
+}
+
+; Function Attrs: nounwind
+declare !taffo.initweight !34 !taffo.funinfo !35 dso_local float @expf(float) #2
+
+; Function Attrs: noinline uwtable
+define dso_local float @_Z19BlkSchlsEqEuroNoDivfffffifPfS_(float, float, float, float, float, i32, float, float*, float*) #0 !taffo.initweight !49 !taffo.funinfo !50 !taffo.equivalentChild !51 {
+  %10 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %11 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %12 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %13 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %14 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %15 = alloca i32, align 4
+  %16 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %17 = alloca float*, align 8, !taffo.info !40, !taffo.initweight !8
+  %18 = alloca float*, align 8, !taffo.info !40, !taffo.initweight !8
+  %19 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %20 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %21 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %22 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %23 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %24 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %25 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %26 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %27 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %28 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %29 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %30 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %31 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %32 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %33 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %34 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %35 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %36 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  store float %0, float* %10, align 4, !taffo.info !40, !taffo.initweight !38
+  %37 = bitcast float* %10 to i8*, !taffo.info !40, !taffo.initweight !38
+  store float %1, float* %11, align 4, !taffo.info !40, !taffo.initweight !38
+  %38 = bitcast float* %11 to i8*, !taffo.info !40, !taffo.initweight !38
+  store float %2, float* %12, align 4, !taffo.info !40, !taffo.initweight !38
+  %39 = bitcast float* %12 to i8*, !taffo.info !40, !taffo.initweight !38
+  store float %3, float* %13, align 4, !taffo.info !40, !taffo.initweight !38
+  %40 = bitcast float* %13 to i8*, !taffo.info !40, !taffo.initweight !38
+  store float %4, float* %14, align 4, !taffo.info !40, !taffo.initweight !38
+  %41 = bitcast float* %14 to i8*, !taffo.info !40, !taffo.initweight !38
+  store i32 %5, i32* %15, align 4
+  store float %6, float* %16, align 4, !taffo.info !40, !taffo.initweight !38
+  %42 = bitcast float* %16 to i8*, !taffo.info !40, !taffo.initweight !38
+  store float* %7, float** %17, align 8, !taffo.info !40, !taffo.initweight !38
+  %43 = bitcast float** %17 to i8*, !taffo.info !40, !taffo.initweight !38
+  store float* %8, float** %18, align 8, !taffo.info !40, !taffo.initweight !38
+  %44 = bitcast float** %18 to i8*, !taffo.info !40, !taffo.initweight !38
+  %45 = bitcast float* %19 to i8*, !taffo.info !40, !taffo.initweight !38
+  %46 = bitcast float* %20 to i8*, !taffo.info !40, !taffo.initweight !38
+  %47 = bitcast float* %21 to i8*, !taffo.info !40, !taffo.initweight !38
+  %48 = bitcast float* %22 to i8*, !taffo.info !40, !taffo.initweight !38
+  %49 = bitcast float* %23 to i8*, !taffo.info !40, !taffo.initweight !38
+  %50 = bitcast float* %24 to i8*, !taffo.info !40, !taffo.initweight !38
+  %51 = bitcast float* %25 to i8*, !taffo.info !40, !taffo.initweight !38
+  %52 = bitcast float* %26 to i8*, !taffo.info !40, !taffo.initweight !38
+  %53 = bitcast float* %27 to i8*, !taffo.info !40, !taffo.initweight !38
+  %54 = bitcast float* %28 to i8*, !taffo.info !40, !taffo.initweight !38
+  %55 = bitcast float* %29 to i8*, !taffo.info !40, !taffo.initweight !38
+  %56 = bitcast float* %30 to i8*, !taffo.info !40, !taffo.initweight !38
+  %57 = bitcast float* %31 to i8*, !taffo.info !40, !taffo.initweight !38
+  %58 = bitcast float* %32 to i8*, !taffo.info !40, !taffo.initweight !38
+  %59 = bitcast float* %33 to i8*, !taffo.info !40, !taffo.initweight !38
+  %60 = bitcast float* %34 to i8*, !taffo.info !40, !taffo.initweight !38
+  %61 = bitcast float* %35 to i8*, !taffo.info !40, !taffo.initweight !38
+  %62 = bitcast float* %36 to i8*, !taffo.info !40, !taffo.initweight !38
+  %63 = load float, float* %12, align 4, !taffo.info !40, !taffo.initweight !38
+  store float %63, float* %20, align 4, !taffo.info !40, !taffo.initweight !38
+  %64 = load float, float* %13, align 4, !taffo.info !40, !taffo.initweight !38
+  store float %64, float* %21, align 4, !taffo.info !40, !taffo.initweight !38
+  %65 = load float, float* %14, align 4, !taffo.info !40, !taffo.initweight !38
+  store float %65, float* %22, align 4, !taffo.info !40, !taffo.initweight !38
+  %66 = load float, float* %22, align 4, !taffo.info !40, !taffo.initweight !38
+  %67 = call float @_ZSt4sqrtf.7(float %66), !taffo.info !40, !taffo.initweight !42, !taffo.originalCall !52
+  store float %67, float* %23, align 4, !taffo.info !40, !taffo.initweight !38
+  %68 = load float, float* %10, align 4, !taffo.info !40, !taffo.initweight !38
+  %69 = load float, float* %11, align 4, !taffo.info !40, !taffo.initweight !38
+  %70 = fdiv float %68, %69, !taffo.info !40, !taffo.initweight !42
+  %71 = call float @_ZSt3logf.8(float %70), !taffo.info !40, !taffo.initweight !43, !taffo.originalCall !53
+  store float %71, float* %24, align 4, !taffo.info !40, !taffo.initweight !38
+  %72 = load float, float* %24, align 4, !taffo.info !40, !taffo.initweight !38
+  store float %72, float* %25, align 4, !taffo.info !40, !taffo.initweight !38
+  %73 = load float, float* %21, align 4, !taffo.info !40, !taffo.initweight !38
+  %74 = load float, float* %21, align 4, !taffo.info !40, !taffo.initweight !38
+  %75 = fmul float %73, %74, !taffo.info !40, !taffo.initweight !42
+  store float %75, float* %28, align 4, !taffo.info !40, !taffo.initweight !38
+  %76 = load float, float* %28, align 4, !taffo.info !40, !taffo.initweight !38
+  %77 = fpext float %76 to double, !taffo.info !40, !taffo.initweight !42
+  %78 = fmul double %77, 5.000000e-01, !taffo.info !40, !taffo.initweight !43
+  %79 = fptrunc double %78 to float, !taffo.info !40, !taffo.initweight !44
+  store float %79, float* %28, align 4, !taffo.info !40, !taffo.initweight !38
+  %80 = load float, float* %20, align 4, !taffo.info !40, !taffo.initweight !38
+  %81 = load float, float* %28, align 4, !taffo.info !40, !taffo.initweight !38
+  %82 = fadd float %80, %81, !taffo.info !40, !taffo.initweight !42
+  store float %82, float* %26, align 4, !taffo.info !40, !taffo.initweight !38
+  %83 = load float, float* %26, align 4, !taffo.info !40, !taffo.initweight !38
+  %84 = load float, float* %22, align 4, !taffo.info !40, !taffo.initweight !38
+  %85 = fmul float %83, %84, !taffo.info !40, !taffo.initweight !42
+  store float %85, float* %26, align 4, !taffo.info !40, !taffo.initweight !38
+  %86 = load float, float* %26, align 4, !taffo.info !40, !taffo.initweight !38
+  %87 = load float, float* %25, align 4, !taffo.info !40, !taffo.initweight !38
+  %88 = fadd float %86, %87, !taffo.info !40, !taffo.initweight !42
+  store float %88, float* %26, align 4, !taffo.info !40, !taffo.initweight !38
+  %89 = load float, float* %21, align 4, !taffo.info !40, !taffo.initweight !38
+  %90 = load float, float* %23, align 4, !taffo.info !40, !taffo.initweight !38
+  %91 = fmul float %89, %90, !taffo.info !40, !taffo.initweight !42
+  store float %91, float* %29, align 4, !taffo.info !40, !taffo.initweight !38
+  %92 = load float, float* %26, align 4, !taffo.info !40, !taffo.initweight !38
+  %93 = load float, float* %29, align 4, !taffo.info !40, !taffo.initweight !38
+  %94 = fdiv float %92, %93, !taffo.info !40, !taffo.initweight !42
+  store float %94, float* %26, align 4, !taffo.info !40, !taffo.initweight !38
+  %95 = load float, float* %26, align 4, !taffo.info !40, !taffo.initweight !38
+  %96 = load float, float* %29, align 4, !taffo.info !40, !taffo.initweight !38
+  %97 = fsub float %95, %96, !taffo.info !40, !taffo.initweight !42
+  store float %97, float* %27, align 4, !taffo.info !40, !taffo.initweight !38
+  %98 = load float, float* %26, align 4, !taffo.info !40, !taffo.initweight !38
+  store float %98, float* %30, align 4, !taffo.info !40, !taffo.initweight !38
+  %99 = load float, float* %27, align 4, !taffo.info !40, !taffo.initweight !38
+  store float %99, float* %31, align 4, !taffo.info !40, !taffo.initweight !38
+  %100 = load float, float* %30, align 4, !taffo.info !40, !taffo.initweight !38
+  %101 = call float @_Z4CNDFf.1(float %100), !taffo.info !40, !taffo.initweight !42, !taffo.originalCall !54
+  store float %101, float* %33, align 4, !taffo.info !40, !taffo.initweight !38
+  %102 = load float, float* %33, align 4, !taffo.info !40, !taffo.initweight !38
+  %103 = fpext float %102 to double, !taffo.info !40, !taffo.initweight !42
+  %104 = fcmp ogt double %103, 1.000000e+00, !taffo.info !40, !taffo.initweight !43
+  br i1 %104, label %105, label %106, !taffo.info !40, !taffo.initweight !44
+
+; <label>:105:                                    ; preds = %9
+  br label %106
+
+; <label>:106:                                    ; preds = %105, %9
+  %107 = load float, float* %31, align 4, !taffo.info !40, !taffo.initweight !38
+  %108 = call float @_Z4CNDFf.1(float %107), !taffo.info !40, !taffo.initweight !42, !taffo.originalCall !54
+  store float %108, float* %34, align 4, !taffo.info !40, !taffo.initweight !38
+  %109 = load float, float* %34, align 4, !taffo.info !40, !taffo.initweight !38
+  %110 = fpext float %109 to double, !taffo.info !40, !taffo.initweight !42
+  %111 = fcmp ogt double %110, 1.000000e+00, !taffo.info !40, !taffo.initweight !43
+  br i1 %111, label %112, label %113, !taffo.info !40, !taffo.initweight !44
+
+; <label>:112:                                    ; preds = %106
+  br label %113
+
+; <label>:113:                                    ; preds = %112, %106
+  %114 = load float, float* %33, align 4, !taffo.info !40, !taffo.initweight !38
+  %115 = load float*, float** %17, align 8, !taffo.info !40, !taffo.initweight !38
+  store float %114, float* %115, align 4, !taffo.info !40, !taffo.initweight !42
+  %116 = load float, float* %34, align 4, !taffo.info !40, !taffo.initweight !38
+  %117 = load float*, float** %18, align 8, !taffo.info !40, !taffo.initweight !38
+  store float %116, float* %117, align 4, !taffo.info !40, !taffo.initweight !42
+  %118 = load float, float* %11, align 4, !taffo.info !40, !taffo.initweight !38
+  %119 = load float, float* %12, align 4, !taffo.info !40, !taffo.initweight !38
+  %120 = fsub float -0.000000e+00, %119, !taffo.info !40, !taffo.initweight !42
+  %121 = load float, float* %14, align 4, !taffo.info !40, !taffo.initweight !38
+  %122 = fmul float %120, %121, !taffo.info !40, !taffo.initweight !42
+  %123 = call float @_ZSt3expf.21(float %122), !taffo.info !40, !taffo.initweight !43, !taffo.originalCall !45
+  %124 = fmul float %118, %123, !taffo.info !40, !taffo.initweight !42
+  store float %124, float* %32, align 4, !taffo.info !40, !taffo.initweight !38
+  %125 = load i32, i32* %15, align 4
+  %126 = icmp eq i32 %125, 0
+  br i1 %126, label %127, label %135
+
+; <label>:127:                                    ; preds = %113
+  %128 = load float, float* %10, align 4, !taffo.info !40, !taffo.initweight !38
+  %129 = load float, float* %33, align 4, !taffo.info !40, !taffo.initweight !38
+  %130 = fmul float %128, %129, !taffo.info !40, !taffo.initweight !42
+  %131 = load float, float* %32, align 4, !taffo.info !40, !taffo.initweight !38
+  %132 = load float, float* %34, align 4, !taffo.info !40, !taffo.initweight !38
+  %133 = fmul float %131, %132, !taffo.info !40, !taffo.initweight !42
+  %134 = fsub float %130, %133, !taffo.info !40, !taffo.initweight !43
+  store float %134, float* %19, align 4, !taffo.info !40, !taffo.initweight !38
+  br label %151
+
+; <label>:135:                                    ; preds = %113
+  %136 = load float, float* %33, align 4, !taffo.info !40, !taffo.initweight !38
+  %137 = fpext float %136 to double, !taffo.info !40, !taffo.initweight !42
+  %138 = fsub double 1.000000e+00, %137, !taffo.info !40, !taffo.initweight !43
+  %139 = fptrunc double %138 to float, !taffo.info !40, !taffo.initweight !44
+  store float %139, float* %35, align 4, !taffo.info !40, !taffo.initweight !38
+  %140 = load float, float* %34, align 4, !taffo.info !40, !taffo.initweight !38
+  %141 = fpext float %140 to double, !taffo.info !40, !taffo.initweight !42
+  %142 = fsub double 1.000000e+00, %141, !taffo.info !40, !taffo.initweight !43
+  %143 = fptrunc double %142 to float, !taffo.info !40, !taffo.initweight !44
+  store float %143, float* %36, align 4, !taffo.info !40, !taffo.initweight !38
+  %144 = load float, float* %32, align 4, !taffo.info !40, !taffo.initweight !38
+  %145 = load float, float* %36, align 4, !taffo.info !40, !taffo.initweight !38
+  %146 = fmul float %144, %145, !taffo.info !40, !taffo.initweight !42
+  %147 = load float, float* %10, align 4, !taffo.info !40, !taffo.initweight !38
+  %148 = load float, float* %35, align 4, !taffo.info !40, !taffo.initweight !38
+  %149 = fmul float %147, %148, !taffo.info !40, !taffo.initweight !42
+  %150 = fsub float %146, %149, !taffo.info !40, !taffo.initweight !43
+  store float %150, float* %19, align 4, !taffo.info !40, !taffo.initweight !38
+  br label %151
+
+; <label>:151:                                    ; preds = %135, %127
+  %152 = load float, float* %19, align 4, !taffo.info !40, !taffo.initweight !38
+  ret float %152, !taffo.info !40, !taffo.initweight !42
+}
+
+; Function Attrs: noinline nounwind uwtable
+define linkonce_odr dso_local float @_ZSt4sqrtf(float) #4 comdat !taffo.initweight !34 !taffo.funinfo !35 !taffo.equivalentChild !55 {
+  %2 = alloca float, align 4
+  store float %0, float* %2, align 4
+  %3 = load float, float* %2, align 4
+  %4 = call float @sqrtf(float %3) #3
+  ret float %4
+}
+
+; Function Attrs: noinline nounwind uwtable
+define linkonce_odr dso_local float @_ZSt3logf(float) #4 comdat !taffo.initweight !34 !taffo.funinfo !35 !taffo.equivalentChild !56 {
+  %2 = alloca float, align 4
+  store float %0, float* %2, align 4
+  %3 = load float, float* %2, align 4
+  %4 = call float @logf(float %3) #3
+  ret float %4
+}
+
+; Function Attrs: nounwind
+declare !taffo.initweight !34 !taffo.funinfo !35 dso_local float @logf(float) #2
+
+; Function Attrs: nounwind
+declare !taffo.initweight !34 !taffo.funinfo !35 dso_local float @sqrtf(float) #2
+
+; Function Attrs: noinline nounwind uwtable
+define dso_local double @_Z9normalizeddddd(double, double, double, double, double) #4 !taffo.initweight !57 !taffo.funinfo !58 {
+  %6 = alloca double, align 8
+  %7 = alloca double, align 8
+  %8 = alloca double, align 8
+  %9 = alloca double, align 8
+  %10 = alloca double, align 8
+  store double %0, double* %6, align 8
+  store double %1, double* %7, align 8
+  store double %2, double* %8, align 8
+  store double %3, double* %9, align 8
+  store double %4, double* %10, align 8
+  %11 = load double, double* %6, align 8
+  %12 = load double, double* %7, align 8
+  %13 = fsub double %11, %12
+  %14 = load double, double* %8, align 8
+  %15 = load double, double* %7, align 8
+  %16 = fsub double %14, %15
+  %17 = fdiv double %13, %16
+  %18 = load double, double* %10, align 8
+  %19 = load double, double* %9, align 8
+  %20 = fsub double %18, %19
+  %21 = fmul double %17, %20
+  %22 = load double, double* %9, align 8
+  %23 = fadd double %21, %22
+  ret double %23
+}
+
+; Function Attrs: noinline uwtable
+define dso_local i32 @_Z9bs_threadPv(i8*) #0 !taffo.initweight !34 !taffo.funinfo !35 !taffo.start !59 {
+  %2 = alloca i8*, align 8
+  %3 = alloca i32, align 4
+  %4 = alloca i32, align 4, !taffo.info !60
+  %5 = alloca i32, align 4
+  %6 = alloca i32, align 4
+  %7 = alloca i32, align 4
+  %8 = alloca float, align 4, !taffo.info !62, !taffo.initweight !8, !taffo.target !64
+  %9 = alloca float, align 4, !taffo.info !2
+  %10 = alloca float, align 4, !taffo.info !62, !taffo.initweight !8
+  %11 = alloca float, align 4, !taffo.info !65, !taffo.initweight !8
+  store i8* %0, i8** %2, align 8
+  %12 = load i8*, i8** %2, align 8
+  %13 = bitcast i8* %12 to i32*
+  %14 = load i32, i32* %13, align 4
+  store i32 %14, i32* %5, align 4
+  %15 = load i32, i32* %5, align 4
+  %16 = load i32, i32* @numOptions, align 4, !taffo.info !0
+  %17 = mul nsw i32 %15, %16
+  store i32 %17, i32* %6, align 4
+  %18 = load i32, i32* %6, align 4
+  %19 = load i32, i32* @numOptions, align 4, !taffo.info !0
+  %20 = add nsw i32 %18, %19
+  store i32 %20, i32* %7, align 4
+  %21 = bitcast float* %8 to i8*, !taffo.info !66, !taffo.initweight !38, !taffo.target !64
+  store i32 0, i32* %4, align 4
+  br label %22
+
+; <label>:22:                                     ; preds = %75, %1
+  %23 = load i32, i32* %4, align 4, !taffo.info !60
+  %24 = icmp slt i32 %23, 1, !taffo.info !60
+  br i1 %24, label %25, label %78
+
+; <label>:25:                                     ; preds = %22
+  %26 = load i32, i32* %6, align 4
+  store i32 %26, i32* %3, align 4
+  br label %27
+
+; <label>:27:                                     ; preds = %71, %25
+  %28 = load i32, i32* %3, align 4
+  %29 = load i32, i32* %7, align 4
+  %30 = icmp slt i32 %28, %29, !taffo.info !60
+  br i1 %30, label %31, label %74
+
+; <label>:31:                                     ; preds = %27
+  %32 = bitcast float* %10 to i8*, !taffo.info !66, !taffo.initweight !38
+  %33 = bitcast float* %11 to i8*, !taffo.info !67, !taffo.initweight !38
+  store float 0.000000e+00, float* %11, align 4, !taffo.info !68, !taffo.initweight !38
+  %34 = load float*, float** @sptprice, align 8, !taffo.info !4, !taffo.initweight !38
+  %35 = load i32, i32* %3, align 4
+  %36 = sext i32 %35 to i64
+  %37 = getelementptr inbounds float, float* %34, i64 %36, !taffo.info !4, !taffo.initweight !42
+  %38 = load float, float* %37, align 4, !taffo.info !4, !taffo.initweight !43
+  %39 = load float*, float** @strike, align 8, !taffo.info !9, !taffo.initweight !38
+  %40 = load i32, i32* %3, align 4
+  %41 = sext i32 %40 to i64
+  %42 = getelementptr inbounds float, float* %39, i64 %41, !taffo.info !9, !taffo.initweight !42
+  %43 = load float, float* %42, align 4, !taffo.info !9, !taffo.initweight !43
+  %44 = load float*, float** @rate, align 8, !taffo.info !11, !taffo.initweight !38
+  %45 = load i32, i32* %3, align 4
+  %46 = sext i32 %45 to i64
+  %47 = getelementptr inbounds float, float* %44, i64 %46, !taffo.info !11, !taffo.initweight !42
+  %48 = load float, float* %47, align 4, !taffo.info !11, !taffo.initweight !43
+  %49 = load float*, float** @volatility, align 8, !taffo.info !14, !taffo.initweight !38
+  %50 = load i32, i32* %3, align 4
+  %51 = sext i32 %50 to i64
+  %52 = getelementptr inbounds float, float* %49, i64 %51, !taffo.info !14, !taffo.initweight !42
+  %53 = load float, float* %52, align 4, !taffo.info !14, !taffo.initweight !43
+  %54 = load float*, float** @otime, align 8, !taffo.info !16, !taffo.initweight !38
+  %55 = load i32, i32* %3, align 4
+  %56 = sext i32 %55 to i64
+  %57 = getelementptr inbounds float, float* %54, i64 %56, !taffo.info !16, !taffo.initweight !42
+  %58 = load float, float* %57, align 4, !taffo.info !16, !taffo.initweight !43
+  %59 = load i32*, i32** @otype, align 8, !taffo.info !0
+  %60 = load i32, i32* %3, align 4
+  %61 = sext i32 %60 to i64
+  %62 = getelementptr inbounds i32, i32* %59, i64 %61, !taffo.info !0
+  %63 = load i32, i32* %62, align 4, !taffo.info !0
+  %64 = load float, float* %11, align 4, !taffo.info !65, !taffo.initweight !38
+  %65 = call float @_Z19BlkSchlsEqEuroNoDivfffffifPfS_.9(float %38, float %43, float %48, float %53, float %58, i32 %63, float %64, float* %9, float* %10), !taffo.info !62, !taffo.initweight !38, !taffo.originalCall !69
+  store float %65, float* %8, align 4, !taffo.info !40, !taffo.initweight !38, !taffo.target !64
+  %66 = load float, float* %8, align 4, !taffo.info !62, !taffo.initweight !38, !taffo.target !64
+  %67 = load float*, float** @prices, align 8, !taffo.info !2
+  %68 = load i32, i32* %3, align 4
+  %69 = sext i32 %68 to i64
+  %70 = getelementptr inbounds float, float* %67, i64 %69, !taffo.info !2
+  store float %66, float* %70, align 4, !taffo.info !40, !taffo.initweight !42, !taffo.target !64
+  br label %71
+
+; <label>:71:                                     ; preds = %31
+  %72 = load i32, i32* %3, align 4
+  %73 = add nsw i32 %72, 1
+  store i32 %73, i32* %3, align 4
+  br label %27
+
+; <label>:74:                                     ; preds = %27
+  br label %75
+
+; <label>:75:                                     ; preds = %74
+  %76 = load i32, i32* %4, align 4, !taffo.info !60
+  %77 = add nsw i32 %76, 1, !taffo.info !70
+  store i32 %77, i32* %4, align 4
+  br label %22
+
+; <label>:78:                                     ; preds = %22
+  ret i32 0, !taffo.info !0
+}
+
+; Function Attrs: noinline norecurse uwtable
+define dso_local i32 @main(i32, i8**) #5 !taffo.initweight !72 !taffo.funinfo !73 {
+  %3 = alloca i32, align 4
+  %4 = alloca i32, align 4
+  %5 = alloca i8**, align 8
+  %6 = alloca %struct._IO_FILE*, align 8
+  %7 = alloca i32, align 4
+  %8 = alloca i32, align 4
+  %9 = alloca float*, align 8
+  %10 = alloca i32*, align 8
+  %11 = alloca i32, align 4
+  %12 = alloca i8*, align 8
+  %13 = alloca i8*, align 8
+  %14 = alloca %class.AxBenchTimer, align 8
+  %15 = alloca i32, align 4
+  %16 = alloca i64, align 8
+  store i32 0, i32* %3, align 4
+  store i32 %0, i32* %4, align 4
+  store i8** %1, i8*** %5, align 8
+  %17 = call i32 @fflush(%struct._IO_FILE* null)
+  %18 = load i8**, i8*** %5, align 8
+  %19 = getelementptr inbounds i8*, i8** %18, i64 1
+  %20 = load i8*, i8** %19, align 8
+  store i8* %20, i8** %12, align 8
+  %21 = load i8**, i8*** %5, align 8
+  %22 = getelementptr inbounds i8*, i8** %21, i64 2
+  %23 = load i8*, i8** %22, align 8
+  store i8* %23, i8** %13, align 8
+  %24 = load i8*, i8** %12, align 8
+  %25 = call %struct._IO_FILE* @fopen(i8* %24, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str.9, i32 0, i32 0))
+  store %struct._IO_FILE* %25, %struct._IO_FILE** %6, align 8
+  %26 = load %struct._IO_FILE*, %struct._IO_FILE** %6, align 8
+  %27 = icmp eq %struct._IO_FILE* %26, null
+  br i1 %27, label %28, label %31
+
+; <label>:28:                                     ; preds = %2
+  %29 = load i8*, i8** %12, align 8
+  %30 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([34 x i8], [34 x i8]* @.str.10, i32 0, i32 0), i8* %29)
+  call void @exit(i32 1) #7
+  unreachable
+
+; <label>:31:                                     ; preds = %2
+  %32 = load %struct._IO_FILE*, %struct._IO_FILE** %6, align 8
+  %33 = call i32 (%struct._IO_FILE*, i8*, ...) @fscanf(%struct._IO_FILE* %32, i8* getelementptr inbounds ([3 x i8], [3 x i8]* @.str.11, i32 0, i32 0), i32* @numOptions)
+  store i32 %33, i32* %11, align 4
+  %34 = load i32, i32* %11, align 4
+  %35 = icmp ne i32 %34, 1
+  br i1 %35, label %36, label %41
+
+; <label>:36:                                     ; preds = %31
+  %37 = load i8*, i8** %12, align 8
+  %38 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([39 x i8], [39 x i8]* @.str.12, i32 0, i32 0), i8* %37)
+  %39 = load %struct._IO_FILE*, %struct._IO_FILE** %6, align 8
+  %40 = call i32 @fclose(%struct._IO_FILE* %39)
+  call void @exit(i32 1) #7
+  unreachable
+
+; <label>:41:                                     ; preds = %31
+  %42 = load i32, i32* @numOptions, align 4, !taffo.info !0
+  %43 = sext i32 %42 to i64
+  %44 = mul i64 %43, 28
+  %45 = call noalias i8* @malloc(i64 %44) #3
+  %46 = bitcast i8* %45 to %struct.OptionData_*
+  store %struct.OptionData_* %46, %struct.OptionData_** @data, align 8
+  %47 = load i32, i32* @numOptions, align 4, !taffo.info !0
+  %48 = sext i32 %47 to i64
+  %49 = mul i64 %48, 4
+  %50 = call noalias i8* @malloc(i64 %49) #3
+  %51 = bitcast i8* %50 to float*
+  store float* %51, float** @s, align 8
+  %52 = load i32, i32* @numOptions, align 4, !taffo.info !0
+  %53 = sext i32 %52 to i64
+  %54 = mul i64 %53, 4
+  %55 = call noalias i8* @malloc(i64 %54) #3
+  %56 = bitcast i8* %55 to float*
+  store float* %56, float** @stk, align 8
+  %57 = load i32, i32* @numOptions, align 4, !taffo.info !0
+  %58 = sext i32 %57 to i64
+  %59 = mul i64 %58, 4
+  %60 = call noalias i8* @malloc(i64 %59) #3
+  %61 = bitcast i8* %60 to float*
+  store float* %61, float** @prices, align 8
+  store i32 0, i32* %8, align 4
+  br label %62
+
+; <label>:62:                                     ; preds = %124, %41
+  %63 = load i32, i32* %8, align 4
+  %64 = load i32, i32* @numOptions, align 4, !taffo.info !0
+  %65 = icmp slt i32 %63, %64
+  br i1 %65, label %66, label %127
+
+; <label>:66:                                     ; preds = %62
+  %67 = load %struct._IO_FILE*, %struct._IO_FILE** %6, align 8
+  %68 = load float*, float** @s, align 8, !taffo.info !0
+  %69 = load i32, i32* %8, align 4
+  %70 = sext i32 %69 to i64
+  %71 = getelementptr inbounds float, float* %68, i64 %70
+  %72 = load float*, float** @stk, align 8, !taffo.info !0
+  %73 = load i32, i32* %8, align 4
+  %74 = sext i32 %73 to i64
+  %75 = getelementptr inbounds float, float* %72, i64 %74
+  %76 = call i32 (%struct._IO_FILE*, i8*, ...) @fscanf(%struct._IO_FILE* %67, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @.str.13, i32 0, i32 0), float* %71, float* %75)
+  store i32 %76, i32* %11, align 4
+  %77 = load %struct._IO_FILE*, %struct._IO_FILE** %6, align 8
+  %78 = load %struct.OptionData_*, %struct.OptionData_** @data, align 8, !taffo.info !0
+  %79 = load i32, i32* %8, align 4
+  %80 = sext i32 %79 to i64
+  %81 = getelementptr inbounds %struct.OptionData_, %struct.OptionData_* %78, i64 %80
+  %82 = getelementptr inbounds %struct.OptionData_, %struct.OptionData_* %81, i32 0, i32 0
+  %83 = load %struct.OptionData_*, %struct.OptionData_** @data, align 8, !taffo.info !0
+  %84 = load i32, i32* %8, align 4
+  %85 = sext i32 %84 to i64
+  %86 = getelementptr inbounds %struct.OptionData_, %struct.OptionData_* %83, i64 %85
+  %87 = getelementptr inbounds %struct.OptionData_, %struct.OptionData_* %86, i32 0, i32 1
+  %88 = load %struct.OptionData_*, %struct.OptionData_** @data, align 8, !taffo.info !0
+  %89 = load i32, i32* %8, align 4
+  %90 = sext i32 %89 to i64
+  %91 = getelementptr inbounds %struct.OptionData_, %struct.OptionData_* %88, i64 %90
+  %92 = getelementptr inbounds %struct.OptionData_, %struct.OptionData_* %91, i32 0, i32 2
+  %93 = load %struct.OptionData_*, %struct.OptionData_** @data, align 8, !taffo.info !0
+  %94 = load i32, i32* %8, align 4
+  %95 = sext i32 %94 to i64
+  %96 = getelementptr inbounds %struct.OptionData_, %struct.OptionData_* %93, i64 %95
+  %97 = getelementptr inbounds %struct.OptionData_, %struct.OptionData_* %96, i32 0, i32 3
+  %98 = load %struct.OptionData_*, %struct.OptionData_** @data, align 8, !taffo.info !0
+  %99 = load i32, i32* %8, align 4
+  %100 = sext i32 %99 to i64
+  %101 = getelementptr inbounds %struct.OptionData_, %struct.OptionData_* %98, i64 %100
+  %102 = getelementptr inbounds %struct.OptionData_, %struct.OptionData_* %101, i32 0, i32 4
+  %103 = load %struct.OptionData_*, %struct.OptionData_** @data, align 8, !taffo.info !0
+  %104 = load i32, i32* %8, align 4
+  %105 = sext i32 %104 to i64
+  %106 = getelementptr inbounds %struct.OptionData_, %struct.OptionData_* %103, i64 %105
+  %107 = getelementptr inbounds %struct.OptionData_, %struct.OptionData_* %106, i32 0, i32 5
+  %108 = load %struct.OptionData_*, %struct.OptionData_** @data, align 8, !taffo.info !0
+  %109 = load i32, i32* %8, align 4
+  %110 = sext i32 %109 to i64
+  %111 = getelementptr inbounds %struct.OptionData_, %struct.OptionData_* %108, i64 %110
+  %112 = getelementptr inbounds %struct.OptionData_, %struct.OptionData_* %111, i32 0, i32 6
+  %113 = call i32 (%struct._IO_FILE*, i8*, ...) @fscanf(%struct._IO_FILE* %77, i8* getelementptr inbounds ([21 x i8], [21 x i8]* @.str.14, i32 0, i32 0), float* %82, float* %87, float* %92, float* %97, i8* %102, float* %107, float* %112)
+  %114 = load i32, i32* %11, align 4
+  %115 = add nsw i32 %114, %113
+  store i32 %115, i32* %11, align 4
+  %116 = load i32, i32* %11, align 4
+  %117 = icmp ne i32 %116, 9
+  br i1 %117, label %118, label %123
+
+; <label>:118:                                    ; preds = %66
+  %119 = load i8*, i8** %12, align 8
+  %120 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([39 x i8], [39 x i8]* @.str.12, i32 0, i32 0), i8* %119)
+  %121 = load %struct._IO_FILE*, %struct._IO_FILE** %6, align 8
+  %122 = call i32 @fclose(%struct._IO_FILE* %121)
+  call void @exit(i32 1) #7
+  unreachable
+
+; <label>:123:                                    ; preds = %66
+  br label %124
+
+; <label>:124:                                    ; preds = %123
+  %125 = load i32, i32* %8, align 4
+  %126 = add nsw i32 %125, 1
+  store i32 %126, i32* %8, align 4
+  br label %62
+
+; <label>:127:                                    ; preds = %62
+  %128 = load %struct._IO_FILE*, %struct._IO_FILE** %6, align 8
+  %129 = call i32 @fclose(%struct._IO_FILE* %128)
+  store i32 %129, i32* %11, align 4
+  %130 = load i32, i32* %11, align 4
+  %131 = icmp ne i32 %130, 0
+  br i1 %131, label %132, label %135
+
+; <label>:132:                                    ; preds = %127
+  %133 = load i8*, i8** %12, align 8
+  %134 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([35 x i8], [35 x i8]* @.str.15, i32 0, i32 0), i8* %133)
+  call void @exit(i32 1) #7
+  unreachable
+
+; <label>:135:                                    ; preds = %127
+  %136 = load i32, i32* @numOptions, align 4, !taffo.info !0
+  %137 = mul nsw i32 5, %136
+  %138 = sext i32 %137 to i64
+  %139 = mul i64 %138, 4
+  %140 = add i64 %139, 256
+  %141 = call noalias i8* @malloc(i64 %140) #3
+  %142 = bitcast i8* %141 to float*
+  store float* %142, float** %9, align 8
+  %143 = load float*, float** %9, align 8
+  %144 = ptrtoint float* %143 to i64
+  %145 = add i64 %144, 256
+  %146 = and i64 %145, -64
+  %147 = inttoptr i64 %146 to float*
+  store float* %147, float** @sptprice, align 8, !taffo.info !74, !taffo.initweight !38
+  %148 = load float*, float** @sptprice, align 8, !taffo.info !4, !taffo.initweight !38
+  %149 = load i32, i32* @numOptions, align 4, !taffo.info !0
+  %150 = sext i32 %149 to i64
+  %151 = getelementptr inbounds float, float* %148, i64 %150, !taffo.info !4, !taffo.initweight !42
+  store float* %151, float** @strike, align 8, !taffo.info !75, !taffo.initweight !38
+  %152 = load float*, float** @strike, align 8, !taffo.info !9, !taffo.initweight !38
+  %153 = load i32, i32* @numOptions, align 4, !taffo.info !0
+  %154 = sext i32 %153 to i64
+  %155 = getelementptr inbounds float, float* %152, i64 %154, !taffo.info !9, !taffo.initweight !42
+  store float* %155, float** @rate, align 8, !taffo.info !76, !taffo.initweight !38
+  %156 = load float*, float** @rate, align 8, !taffo.info !11, !taffo.initweight !38
+  %157 = load i32, i32* @numOptions, align 4, !taffo.info !0
+  %158 = sext i32 %157 to i64
+  %159 = getelementptr inbounds float, float* %156, i64 %158, !taffo.info !11, !taffo.initweight !42
+  store float* %159, float** @volatility, align 8, !taffo.info !77, !taffo.initweight !38
+  %160 = load float*, float** @volatility, align 8, !taffo.info !14, !taffo.initweight !38
+  %161 = load i32, i32* @numOptions, align 4, !taffo.info !0
+  %162 = sext i32 %161 to i64
+  %163 = getelementptr inbounds float, float* %160, i64 %162, !taffo.info !14, !taffo.initweight !42
+  store float* %163, float** @otime, align 8, !taffo.info !78, !taffo.initweight !38
+  %164 = load i32, i32* @numOptions, align 4, !taffo.info !0
+  %165 = sext i32 %164 to i64
+  %166 = mul i64 %165, 4
+  %167 = add i64 %166, 256
+  %168 = call noalias i8* @malloc(i64 %167) #3
+  %169 = bitcast i8* %168 to i32*
+  store i32* %169, i32** %10, align 8
+  %170 = load i32*, i32** %10, align 8
+  %171 = ptrtoint i32* %170 to i64
+  %172 = add i64 %171, 256
+  %173 = and i64 %172, -64
+  %174 = inttoptr i64 %173 to i32*
+  store i32* %174, i32** @otype, align 8
+  store i32 0, i32* %7, align 4
+  br label %175
+
+; <label>:175:                                    ; preds = %248, %135
+  %176 = load i32, i32* %7, align 4
+  %177 = load i32, i32* @numOptions, align 4, !taffo.info !0
+  %178 = icmp slt i32 %176, %177
+  br i1 %178, label %179, label %251
+
+; <label>:179:                                    ; preds = %175
+  %180 = load %struct.OptionData_*, %struct.OptionData_** @data, align 8, !taffo.info !0
+  %181 = load i32, i32* %7, align 4
+  %182 = sext i32 %181 to i64
+  %183 = getelementptr inbounds %struct.OptionData_, %struct.OptionData_* %180, i64 %182
+  %184 = getelementptr inbounds %struct.OptionData_, %struct.OptionData_* %183, i32 0, i32 4
+  %185 = load i8, i8* %184, align 4
+  %186 = sext i8 %185 to i32
+  %187 = icmp eq i32 %186, 80
+  %188 = zext i1 %187 to i64
+  %189 = select i1 %187, i32 1, i32 0
+  %190 = load i32*, i32** @otype, align 8, !taffo.info !0
+  %191 = load i32, i32* %7, align 4
+  %192 = sext i32 %191 to i64
+  %193 = getelementptr inbounds i32, i32* %190, i64 %192
+  store i32 %189, i32* %193, align 4
+  %194 = load float*, float** @s, align 8, !taffo.info !0
+  %195 = load i32, i32* %7, align 4
+  %196 = sext i32 %195 to i64
+  %197 = getelementptr inbounds float, float* %194, i64 %196
+  %198 = load float, float* %197, align 4
+  %199 = fpext float %198 to double
+  %200 = fdiv double %199, 1.200000e+02
+  %201 = fptrunc double %200 to float
+  %202 = load float*, float** @sptprice, align 8, !taffo.info !4, !taffo.initweight !38
+  %203 = load i32, i32* %7, align 4
+  %204 = sext i32 %203 to i64
+  %205 = getelementptr inbounds float, float* %202, i64 %204, !taffo.info !4, !taffo.initweight !42
+  store float %201, float* %205, align 4, !taffo.info !74, !taffo.initweight !43
+  %206 = load float*, float** @stk, align 8, !taffo.info !0
+  %207 = load i32, i32* %7, align 4
+  %208 = sext i32 %207 to i64
+  %209 = getelementptr inbounds float, float* %206, i64 %208
+  %210 = load float, float* %209, align 4
+  %211 = fpext float %210 to double
+  %212 = fdiv double %211, 1.200000e+02
+  %213 = fptrunc double %212 to float
+  %214 = load float*, float** @strike, align 8, !taffo.info !9, !taffo.initweight !38
+  %215 = load i32, i32* %7, align 4
+  %216 = sext i32 %215 to i64
+  %217 = getelementptr inbounds float, float* %214, i64 %216, !taffo.info !9, !taffo.initweight !42
+  store float %213, float* %217, align 4, !taffo.info !75, !taffo.initweight !43
+  %218 = load %struct.OptionData_*, %struct.OptionData_** @data, align 8, !taffo.info !0
+  %219 = load i32, i32* %7, align 4
+  %220 = sext i32 %219 to i64
+  %221 = getelementptr inbounds %struct.OptionData_, %struct.OptionData_* %218, i64 %220
+  %222 = getelementptr inbounds %struct.OptionData_, %struct.OptionData_* %221, i32 0, i32 0
+  %223 = load float, float* %222, align 4
+  %224 = load float*, float** @rate, align 8, !taffo.info !11, !taffo.initweight !38
+  %225 = load i32, i32* %7, align 4
+  %226 = sext i32 %225 to i64
+  %227 = getelementptr inbounds float, float* %224, i64 %226, !taffo.info !11, !taffo.initweight !42
+  store float %223, float* %227, align 4, !taffo.info !76, !taffo.initweight !43
+  %228 = load %struct.OptionData_*, %struct.OptionData_** @data, align 8, !taffo.info !0
+  %229 = load i32, i32* %7, align 4
+  %230 = sext i32 %229 to i64
+  %231 = getelementptr inbounds %struct.OptionData_, %struct.OptionData_* %228, i64 %230
+  %232 = getelementptr inbounds %struct.OptionData_, %struct.OptionData_* %231, i32 0, i32 2
+  %233 = load float, float* %232, align 4
+  %234 = load float*, float** @volatility, align 8, !taffo.info !14, !taffo.initweight !38
+  %235 = load i32, i32* %7, align 4
+  %236 = sext i32 %235 to i64
+  %237 = getelementptr inbounds float, float* %234, i64 %236, !taffo.info !14, !taffo.initweight !42
+  store float %233, float* %237, align 4, !taffo.info !77, !taffo.initweight !43
+  %238 = load %struct.OptionData_*, %struct.OptionData_** @data, align 8, !taffo.info !0
+  %239 = load i32, i32* %7, align 4
+  %240 = sext i32 %239 to i64
+  %241 = getelementptr inbounds %struct.OptionData_, %struct.OptionData_* %238, i64 %240
+  %242 = getelementptr inbounds %struct.OptionData_, %struct.OptionData_* %241, i32 0, i32 3
+  %243 = load float, float* %242, align 4
+  %244 = load float*, float** @otime, align 8, !taffo.info !16, !taffo.initweight !38
+  %245 = load i32, i32* %7, align 4
+  %246 = sext i32 %245 to i64
+  %247 = getelementptr inbounds float, float* %244, i64 %246, !taffo.info !16, !taffo.initweight !42
+  store float %243, float* %247, align 4, !taffo.info !78, !taffo.initweight !43
+  br label %248
+
+; <label>:248:                                    ; preds = %179
+  %249 = load i32, i32* %7, align 4
+  %250 = add nsw i32 %249, 1
+  store i32 %250, i32* %7, align 4
+  br label %175
+
+; <label>:251:                                    ; preds = %175
+  call void @_ZN12AxBenchTimerC2Ev(%class.AxBenchTimer* %14)
+  store i32 0, i32* %15, align 4
+  %252 = bitcast i32* %15 to i8*
+  %253 = call i32 @_Z9bs_threadPv(i8* %252)
+  %254 = call i64 @_ZN12AxBenchTimer20nanosecondsSinceInitEv(%class.AxBenchTimer* %14)
+  store i64 %254, i64* %16, align 8
+  %255 = call dereferenceable(272) %"class.std::basic_ostream"* @_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc(%"class.std::basic_ostream"* dereferenceable(272) @_ZSt4cout, i8* getelementptr inbounds ([15 x i8], [15 x i8]* @.str.16, i32 0, i32 0))
+  %256 = load i64, i64* %16, align 8
+  %257 = uitofp i64 %256 to double
+  %258 = fdiv double %257, 1.000000e+09
+  %259 = call dereferenceable(272) %"class.std::basic_ostream"* @_ZNSolsEd(%"class.std::basic_ostream"* %255, double %258)
+  %260 = call dereferenceable(272) %"class.std::basic_ostream"* @_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc(%"class.std::basic_ostream"* dereferenceable(272) %259, i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str.17, i32 0, i32 0))
+  %261 = load i8*, i8** %13, align 8
+  %262 = call %struct._IO_FILE* @fopen(i8* %261, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str.18, i32 0, i32 0))
+  store %struct._IO_FILE* %262, %struct._IO_FILE** %6, align 8
+  %263 = load %struct._IO_FILE*, %struct._IO_FILE** %6, align 8
+  %264 = icmp eq %struct._IO_FILE* %263, null
+  br i1 %264, label %265, label %268
+
+; <label>:265:                                    ; preds = %251
+  %266 = load i8*, i8** %13, align 8
+  %267 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([34 x i8], [34 x i8]* @.str.10, i32 0, i32 0), i8* %266)
+  call void @exit(i32 1) #7
+  unreachable
+
+; <label>:268:                                    ; preds = %251
+  %269 = load i32, i32* %11, align 4
+  %270 = icmp slt i32 %269, 0
+  br i1 %270, label %271, label %276
+
+; <label>:271:                                    ; preds = %268
+  %272 = load i8*, i8** %13, align 8
+  %273 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([38 x i8], [38 x i8]* @.str.19, i32 0, i32 0), i8* %272)
+  %274 = load %struct._IO_FILE*, %struct._IO_FILE** %6, align 8
+  %275 = call i32 @fclose(%struct._IO_FILE* %274)
+  call void @exit(i32 1) #7
+  unreachable
+
+; <label>:276:                                    ; preds = %268
+  store i32 0, i32* %7, align 4
+  br label %277
+
+; <label>:277:                                    ; preds = %298, %276
+  %278 = load i32, i32* %7, align 4
+  %279 = load i32, i32* @numOptions, align 4, !taffo.info !0
+  %280 = icmp slt i32 %278, %279
+  br i1 %280, label %281, label %301
+
+; <label>:281:                                    ; preds = %277
+  %282 = load %struct._IO_FILE*, %struct._IO_FILE** %6, align 8
+  %283 = load float*, float** @prices, align 8, !taffo.info !2
+  %284 = load i32, i32* %7, align 4
+  %285 = sext i32 %284 to i64
+  %286 = getelementptr inbounds float, float* %283, i64 %285
+  %287 = load float, float* %286, align 4
+  %288 = fpext float %287 to double
+  %289 = call i32 (%struct._IO_FILE*, i8*, ...) @fprintf(%struct._IO_FILE* %282, i8* getelementptr inbounds ([7 x i8], [7 x i8]* @.str.20, i32 0, i32 0), double %288)
+  store i32 %289, i32* %11, align 4
+  %290 = load i32, i32* %11, align 4
+  %291 = icmp slt i32 %290, 0
+  br i1 %291, label %292, label %297
+
+; <label>:292:                                    ; preds = %281
+  %293 = load i8*, i8** %13, align 8
+  %294 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([38 x i8], [38 x i8]* @.str.19, i32 0, i32 0), i8* %293)
+  %295 = load %struct._IO_FILE*, %struct._IO_FILE** %6, align 8
+  %296 = call i32 @fclose(%struct._IO_FILE* %295)
+  call void @exit(i32 1) #7
+  unreachable
+
+; <label>:297:                                    ; preds = %281
+  br label %298
+
+; <label>:298:                                    ; preds = %297
+  %299 = load i32, i32* %7, align 4
+  %300 = add nsw i32 %299, 1
+  store i32 %300, i32* %7, align 4
+  br label %277
+
+; <label>:301:                                    ; preds = %277
+  %302 = load %struct._IO_FILE*, %struct._IO_FILE** %6, align 8
+  %303 = call i32 @fclose(%struct._IO_FILE* %302)
+  store i32 %303, i32* %11, align 4
+  %304 = load i32, i32* %11, align 4
+  %305 = icmp ne i32 %304, 0
+  br i1 %305, label %306, label %309
+
+; <label>:306:                                    ; preds = %301
+  %307 = load i8*, i8** %13, align 8
+  %308 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([35 x i8], [35 x i8]* @.str.15, i32 0, i32 0), i8* %307)
+  call void @exit(i32 1) #7
+  unreachable
+
+; <label>:309:                                    ; preds = %301
+  %310 = load %struct.OptionData_*, %struct.OptionData_** @data, align 8, !taffo.info !0
+  %311 = bitcast %struct.OptionData_* %310 to i8*
+  call void @free(i8* %311) #3
+  %312 = load float*, float** @prices, align 8, !taffo.info !2
+  %313 = bitcast float* %312 to i8*
+  call void @free(i8* %313) #3
+  ret i32 0
+}
+
+declare !taffo.initweight !34 !taffo.funinfo !35 dso_local i32 @fflush(%struct._IO_FILE*) #1
+
+declare !taffo.initweight !72 !taffo.funinfo !73 dso_local %struct._IO_FILE* @fopen(i8*, i8*) #1
+
+declare !taffo.initweight !34 !taffo.funinfo !35 dso_local i32 @printf(i8*, ...) #1
+
+; Function Attrs: noreturn nounwind
+declare !taffo.initweight !34 !taffo.funinfo !35 dso_local void @exit(i32) #6
+
+declare !taffo.initweight !72 !taffo.funinfo !73 dso_local i32 @fscanf(%struct._IO_FILE*, i8*, ...) #1
+
+declare !taffo.initweight !34 !taffo.funinfo !35 dso_local i32 @fclose(%struct._IO_FILE*) #1
+
+; Function Attrs: nounwind
+declare !taffo.initweight !34 !taffo.funinfo !35 dso_local noalias i8* @malloc(i64) #2
+
+; Function Attrs: noinline uwtable
+define linkonce_odr dso_local void @_ZN12AxBenchTimerC2Ev(%class.AxBenchTimer*) unnamed_addr #0 comdat align 2 !taffo.initweight !34 !taffo.funinfo !35 {
+  %2 = alloca %class.AxBenchTimer*, align 8
+  store %class.AxBenchTimer* %0, %class.AxBenchTimer** %2, align 8
+  %3 = load %class.AxBenchTimer*, %class.AxBenchTimer** %2, align 8
+  %4 = getelementptr inbounds %class.AxBenchTimer, %class.AxBenchTimer* %3, i32 0, i32 0
+  call void @_ZN12AxBenchTimer5resetEv(%class.AxBenchTimer* %3)
+  ret void
+}
+
+; Function Attrs: noinline nounwind uwtable
+define linkonce_odr dso_local i64 @_ZN12AxBenchTimer20nanosecondsSinceInitEv(%class.AxBenchTimer*) #4 comdat align 2 !taffo.initweight !34 !taffo.funinfo !35 {
+  %2 = alloca %class.AxBenchTimer*, align 8
+  %3 = alloca i64, align 8
+  %4 = alloca %struct.timespec, align 8
+  %5 = alloca i64, align 8
+  %6 = alloca i64, align 8
+  store %class.AxBenchTimer* %0, %class.AxBenchTimer** %2, align 8
+  %7 = load %class.AxBenchTimer*, %class.AxBenchTimer** %2, align 8
+  %8 = call i32 @clock_gettime(i32 4, %struct.timespec* %4) #3
+  %9 = getelementptr inbounds %class.AxBenchTimer, %class.AxBenchTimer* %7, i32 0, i32 0
+  %10 = getelementptr inbounds %struct.timespec, %struct.timespec* %9, i32 0, i32 1
+  %11 = load i64, i64* %10, align 8
+  %12 = getelementptr inbounds %class.AxBenchTimer, %class.AxBenchTimer* %7, i32 0, i32 0
+  %13 = getelementptr inbounds %struct.timespec, %struct.timespec* %12, i32 0, i32 0
+  %14 = load i64, i64* %13, align 8
+  %15 = mul nsw i64 %14, 1000000000
+  %16 = add nsw i64 %11, %15
+  store i64 %16, i64* %5, align 8
+  %17 = getelementptr inbounds %struct.timespec, %struct.timespec* %4, i32 0, i32 1
+  %18 = load i64, i64* %17, align 8
+  %19 = getelementptr inbounds %struct.timespec, %struct.timespec* %4, i32 0, i32 0
+  %20 = load i64, i64* %19, align 8
+  %21 = mul nsw i64 %20, 1000000000
+  %22 = add nsw i64 %18, %21
+  store i64 %22, i64* %6, align 8
+  %23 = load i64, i64* %6, align 8
+  %24 = load i64, i64* %5, align 8
+  %25 = sub i64 %23, %24
+  store i64 %25, i64* %3, align 8
+  %26 = load i64, i64* %3, align 8
+  ret i64 %26
+}
+
+declare !taffo.initweight !72 !taffo.funinfo !73 dso_local dereferenceable(272) %"class.std::basic_ostream"* @_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc(%"class.std::basic_ostream"* dereferenceable(272), i8*) #1
+
+declare !taffo.initweight !72 !taffo.funinfo !73 dso_local dereferenceable(272) %"class.std::basic_ostream"* @_ZNSolsEd(%"class.std::basic_ostream"*, double) #1
+
+declare !taffo.initweight !72 !taffo.funinfo !73 dso_local i32 @fprintf(%struct._IO_FILE*, i8*, ...) #1
+
+; Function Attrs: nounwind
+declare !taffo.initweight !34 !taffo.funinfo !35 dso_local void @free(i8*) #2
+
+; Function Attrs: nounwind
+declare !taffo.initweight !72 !taffo.funinfo !73 dso_local i32 @clock_gettime(i32, %struct.timespec*) #2
+
+; Function Attrs: noinline nounwind uwtable
+define linkonce_odr dso_local void @_ZN12AxBenchTimer5resetEv(%class.AxBenchTimer*) #4 comdat align 2 !taffo.initweight !34 !taffo.funinfo !35 {
+  %2 = alloca %class.AxBenchTimer*, align 8
+  store %class.AxBenchTimer* %0, %class.AxBenchTimer** %2, align 8
+  %3 = load %class.AxBenchTimer*, %class.AxBenchTimer** %2, align 8
+  %4 = getelementptr inbounds %class.AxBenchTimer, %class.AxBenchTimer* %3, i32 0, i32 0
+  %5 = call i32 @clock_gettime(i32 4, %struct.timespec* %4) #3
+  ret void
+}
+
+; Function Attrs: noinline uwtable
+define internal float @_Z4CNDFf.1(float) #0 !taffo.initweight !44 !taffo.funinfo !39 !taffo.equivalentChild !79 !taffo.sourceFunction !54 {
+  %2 = alloca float, align 4, !taffo.info !40, !taffo.initweight !43
+  %3 = alloca i32, align 4
+  %4 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %5 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %6 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %7 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %8 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %9 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %10 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %11 = alloca float, align 4
+  %12 = alloca float, align 4
+  %13 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %14 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %15 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  %16 = alloca float, align 4, !taffo.info !40, !taffo.initweight !8
+  store float %0, float* %2, align 4, !taffo.info !40, !taffo.initweight !44
+  %17 = bitcast float* %2 to i8*, !taffo.info !40, !taffo.initweight !44
+  %18 = bitcast float* %4 to i8*, !taffo.info !40, !taffo.initweight !38
+  %19 = bitcast float* %5 to i8*, !taffo.info !40, !taffo.initweight !38
+  %20 = bitcast float* %6 to i8*, !taffo.info !40, !taffo.initweight !38
+  %21 = bitcast float* %7 to i8*, !taffo.info !40, !taffo.initweight !38
+  %22 = bitcast float* %8 to i8*, !taffo.info !40, !taffo.initweight !38
+  %23 = bitcast float* %9 to i8*, !taffo.info !40, !taffo.initweight !38
+  %24 = bitcast float* %10 to i8*, !taffo.info !40, !taffo.initweight !38
+  %25 = bitcast float* %13 to i8*, !taffo.info !40, !taffo.initweight !38
+  %26 = bitcast float* %14 to i8*, !taffo.info !40, !taffo.initweight !38
+  %27 = bitcast float* %15 to i8*, !taffo.info !40, !taffo.initweight !38
+  %28 = bitcast float* %16 to i8*, !taffo.info !40, !taffo.initweight !38
+  %29 = load float, float* %2, align 4, !taffo.info !40, !taffo.initweight !44
+  %30 = fpext float %29 to double, !taffo.info !40, !taffo.initweight !80
+  %31 = fcmp olt double %30, 0.000000e+00, !taffo.info !40, !taffo.initweight !81
+  br i1 %31, label %32, label %35, !taffo.info !40, !taffo.initweight !82
+
+; <label>:32:                                     ; preds = %1
+  %33 = load float, float* %2, align 4, !taffo.info !40, !taffo.initweight !44
+  %34 = fsub float -0.000000e+00, %33, !taffo.info !40, !taffo.initweight !80
+  store float %34, float* %2, align 4, !taffo.info !40, !taffo.initweight !44
+  store i32 1, i32* %3, align 4
+  br label %36
+
+; <label>:35:                                     ; preds = %1
+  store i32 0, i32* %3, align 4
+  br label %36
+
+; <label>:36:                                     ; preds = %35, %32
+  %37 = load float, float* %2, align 4, !taffo.info !40, !taffo.initweight !44
+  store float %37, float* %5, align 4, !taffo.info !40, !taffo.initweight !80
+  %38 = load float, float* %2, align 4, !taffo.info !40, !taffo.initweight !44
+  %39 = load float, float* %2, align 4, !taffo.info !40, !taffo.initweight !44
+  %40 = fmul float %38, %39, !taffo.info !40, !taffo.initweight !80
+  %41 = fmul float -5.000000e-01, %40, !taffo.info !40, !taffo.initweight !81
+  %42 = call float @_ZSt3expf.2.3(float %41), !taffo.info !40, !taffo.initweight !82, !taffo.originalCall !83
+  store float %42, float* %7, align 4, !taffo.info !40, !taffo.initweight !84
+  %43 = load float, float* %7, align 4, !taffo.info !40, !taffo.initweight !38
+  store float %43, float* %6, align 4, !taffo.info !40, !taffo.initweight !38
+  %44 = load float, float* %6, align 4, !taffo.info !40, !taffo.initweight !38
+  %45 = fpext float %44 to double, !taffo.info !40, !taffo.initweight !42
+  %46 = fmul double %45, 0x3FD9884533D43651, !taffo.info !40, !taffo.initweight !43
+  %47 = fptrunc double %46 to float, !taffo.info !40, !taffo.initweight !44
+  store float %47, float* %6, align 4, !taffo.info !40, !taffo.initweight !38
+  %48 = load float, float* %5, align 4, !taffo.info !40, !taffo.initweight !38
+  %49 = fpext float %48 to double, !taffo.info !40, !taffo.initweight !42
+  %50 = fmul double 0x3FCDA6711871100E, %49, !taffo.info !40, !taffo.initweight !43
+  %51 = fptrunc double %50 to float, !taffo.info !40, !taffo.initweight !44
+  store float %51, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %52 = load float, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %53 = fpext float %52 to double, !taffo.info !40, !taffo.initweight !42
+  %54 = fadd double 1.000000e+00, %53, !taffo.info !40, !taffo.initweight !43
+  %55 = fptrunc double %54 to float, !taffo.info !40, !taffo.initweight !44
+  store float %55, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %56 = load float, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %57 = fpext float %56 to double, !taffo.info !40, !taffo.initweight !42
+  %58 = fdiv double 1.000000e+00, %57, !taffo.info !40, !taffo.initweight !43
+  %59 = fptrunc double %58 to float, !taffo.info !40, !taffo.initweight !44
+  store float %59, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %60 = load float, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %61 = load float, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %62 = fmul float %60, %61, !taffo.info !40, !taffo.initweight !42
+  store float %62, float* %9, align 4, !taffo.info !40, !taffo.initweight !38
+  %63 = load float, float* %9, align 4, !taffo.info !40, !taffo.initweight !38
+  %64 = load float, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %65 = fmul float %63, %64, !taffo.info !40, !taffo.initweight !42
+  store float %65, float* %10, align 4, !taffo.info !40, !taffo.initweight !38
+  %66 = load float, float* %10, align 4, !taffo.info !40, !taffo.initweight !38
+  %67 = load float, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %68 = fmul float %66, %67, !taffo.info !40, !taffo.initweight !42
+  store float %68, float* %11, align 4, !taffo.info !40, !taffo.initweight !43
+  %69 = load float, float* %11, align 4
+  %70 = load float, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %71 = fmul float %69, %70, !taffo.info !40, !taffo.initweight !42
+  store float %71, float* %12, align 4, !taffo.info !40, !taffo.initweight !43
+  %72 = load float, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %73 = fpext float %72 to double, !taffo.info !40, !taffo.initweight !42
+  %74 = fmul double %73, 0x3FD470BF3A92F8EC, !taffo.info !40, !taffo.initweight !43
+  %75 = fptrunc double %74 to float, !taffo.info !40, !taffo.initweight !44
+  store float %75, float* %14, align 4, !taffo.info !40, !taffo.initweight !38
+  %76 = load float, float* %9, align 4, !taffo.info !40, !taffo.initweight !38
+  %77 = fpext float %76 to double, !taffo.info !40, !taffo.initweight !42
+  %78 = fmul double %77, 0xBFD6D1F0E5A8325B, !taffo.info !40, !taffo.initweight !43
+  %79 = fptrunc double %78 to float, !taffo.info !40, !taffo.initweight !44
+  store float %79, float* %15, align 4, !taffo.info !40, !taffo.initweight !38
+  %80 = load float, float* %10, align 4, !taffo.info !40, !taffo.initweight !38
+  %81 = fpext float %80 to double, !taffo.info !40, !taffo.initweight !42
+  %82 = fmul double %81, 0x3FFC80EF025F5E68, !taffo.info !40, !taffo.initweight !43
+  %83 = fptrunc double %82 to float, !taffo.info !40, !taffo.initweight !44
+  store float %83, float* %16, align 4, !taffo.info !40, !taffo.initweight !38
+  %84 = load float, float* %15, align 4, !taffo.info !40, !taffo.initweight !38
+  %85 = load float, float* %16, align 4, !taffo.info !40, !taffo.initweight !38
+  %86 = fadd float %84, %85, !taffo.info !40, !taffo.initweight !42
+  store float %86, float* %15, align 4, !taffo.info !40, !taffo.initweight !38
+  %87 = load float, float* %11, align 4
+  %88 = fpext float %87 to double
+  %89 = fmul double %88, 0xBFFD23DD4EF278D0
+  %90 = fptrunc double %89 to float
+  store float %90, float* %16, align 4, !taffo.info !40, !taffo.initweight !38
+  %91 = load float, float* %15, align 4, !taffo.info !40, !taffo.initweight !38
+  %92 = load float, float* %16, align 4, !taffo.info !40, !taffo.initweight !38
+  %93 = fadd float %91, %92, !taffo.info !40, !taffo.initweight !42
+  store float %93, float* %15, align 4, !taffo.info !40, !taffo.initweight !38
+  %94 = load float, float* %12, align 4
+  %95 = fpext float %94 to double
+  %96 = fmul double %95, 0x3FF548CDD6F42943
+  %97 = fptrunc double %96 to float
+  store float %97, float* %16, align 4, !taffo.info !40, !taffo.initweight !38
+  %98 = load float, float* %15, align 4, !taffo.info !40, !taffo.initweight !38
+  %99 = load float, float* %16, align 4, !taffo.info !40, !taffo.initweight !38
+  %100 = fadd float %98, %99, !taffo.info !40, !taffo.initweight !42
+  store float %100, float* %15, align 4, !taffo.info !40, !taffo.initweight !38
+  %101 = load float, float* %15, align 4, !taffo.info !40, !taffo.initweight !38
+  %102 = load float, float* %14, align 4, !taffo.info !40, !taffo.initweight !38
+  %103 = fadd float %101, %102, !taffo.info !40, !taffo.initweight !42
+  store float %103, float* %14, align 4, !taffo.info !40, !taffo.initweight !38
+  %104 = load float, float* %14, align 4, !taffo.info !40, !taffo.initweight !38
+  %105 = load float, float* %6, align 4, !taffo.info !40, !taffo.initweight !38
+  %106 = fmul float %104, %105, !taffo.info !40, !taffo.initweight !42
+  store float %106, float* %13, align 4, !taffo.info !40, !taffo.initweight !38
+  %107 = load float, float* %13, align 4, !taffo.info !40, !taffo.initweight !38
+  %108 = fpext float %107 to double, !taffo.info !40, !taffo.initweight !42
+  %109 = fsub double 1.000000e+00, %108, !taffo.info !40, !taffo.initweight !43
+  %110 = fptrunc double %109 to float, !taffo.info !40, !taffo.initweight !44
+  store float %110, float* %13, align 4, !taffo.info !40, !taffo.initweight !38
+  %111 = load float, float* %13, align 4, !taffo.info !40, !taffo.initweight !38
+  store float %111, float* %4, align 4, !taffo.info !40, !taffo.initweight !38
+  %112 = load i32, i32* %3, align 4
+  %113 = icmp ne i32 %112, 0
+  br i1 %113, label %114, label %119
+
+; <label>:114:                                    ; preds = %36
+  %115 = load float, float* %4, align 4, !taffo.info !40, !taffo.initweight !38
+  %116 = fpext float %115 to double, !taffo.info !40, !taffo.initweight !42
+  %117 = fsub double 1.000000e+00, %116, !taffo.info !40, !taffo.initweight !43
+  %118 = fptrunc double %117 to float, !taffo.info !40, !taffo.initweight !44
+  store float %118, float* %4, align 4, !taffo.info !40, !taffo.initweight !38
+  br label %119
+
+; <label>:119:                                    ; preds = %114, %36
+  %120 = load float, float* %4, align 4, !taffo.info !40, !taffo.initweight !38
+  ret float %120, !taffo.info !40, !taffo.initweight !42
+}
+
+; Function Attrs: noinline nounwind uwtable
+define internal float @_ZSt3expf.2(float) #4 !taffo.initweight !85 !taffo.funinfo !39 !taffo.equivalentChild !86 !taffo.sourceFunction !45 {
+  %2 = alloca float, align 4, !taffo.info !40, !taffo.initweight !84
+  store float %0, float* %2, align 4, !taffo.info !40, !taffo.initweight !85
+  %3 = load float, float* %2, align 4, !taffo.info !40, !taffo.initweight !85
+  %4 = call float @expf(float %3) #3, !taffo.info !40, !taffo.initweight !87
+  ret float %4, !taffo.info !40, !taffo.initweight !88
+}
+
+; Function Attrs: noinline nounwind uwtable
+define internal float @_ZSt3expf.2.3(float) #4 !taffo.initweight !85 !taffo.funinfo !39 !taffo.equivalentChild !89 !taffo.sourceFunction !83 {
+  %2 = alloca float, align 4, !taffo.info !40, !taffo.initweight !84
+  store float %0, float* %2, align 4, !taffo.info !40, !taffo.initweight !85
+  %3 = load float, float* %2, align 4, !taffo.info !40, !taffo.initweight !85
+  %4 = call float @expf(float %3) #3, !taffo.info !40, !taffo.initweight !87
+  ret float %4, !taffo.info !40, !taffo.initweight !88
+}
+
+; Function Attrs: noinline nounwind uwtable
+define internal float @_ZSt3expf.5(float) #4 !taffo.initweight !85 !taffo.funinfo !39 !taffo.equivalentChild !90 !taffo.sourceFunction !45 {
+  %2 = alloca float, align 4, !taffo.info !40, !taffo.initweight !84
+  store float %0, float* %2, align 4, !taffo.info !40, !taffo.initweight !85
+  %3 = load float, float* %2, align 4, !taffo.info !40, !taffo.initweight !85
+  %4 = call float @expf(float %3) #3, !taffo.info !40, !taffo.initweight !87
+  ret float %4, !taffo.info !40, !taffo.initweight !88
+}
+
+; Function Attrs: noinline nounwind uwtable
+define internal float @_ZSt3expf.5.6(float) #4 !taffo.initweight !85 !taffo.funinfo !39 !taffo.equivalentChild !91 !taffo.sourceFunction !92 {
+  %2 = alloca float, align 4, !taffo.info !40, !taffo.initweight !84
+  store float %0, float* %2, align 4, !taffo.info !40, !taffo.initweight !85
+  %3 = load float, float* %2, align 4, !taffo.info !40, !taffo.initweight !85
+  %4 = call float @expf(float %3) #3, !taffo.info !40, !taffo.initweight !87
+  ret float %4, !taffo.info !40, !taffo.initweight !88
+}
+
+; Function Attrs: noinline nounwind uwtable
+define internal float @_ZSt4sqrtf.7(float) #4 !taffo.initweight !44 !taffo.funinfo !39 !taffo.equivalentChild !93 !taffo.sourceFunction !52 {
+  %2 = alloca float, align 4, !taffo.info !40, !taffo.initweight !43
+  store float %0, float* %2, align 4, !taffo.info !40, !taffo.initweight !44
+  %3 = load float, float* %2, align 4, !taffo.info !40, !taffo.initweight !44
+  %4 = call float @sqrtf(float %3) #3, !taffo.info !40, !taffo.initweight !80
+  ret float %4, !taffo.info !40, !taffo.initweight !81
+}
+
+; Function Attrs: noinline nounwind uwtable
+define internal float @_ZSt3logf.8(float) #4 !taffo.initweight !80 !taffo.funinfo !39 !taffo.equivalentChild !94 !taffo.sourceFunction !53 {
+  %2 = alloca float, align 4, !taffo.info !40, !taffo.initweight !44
+  store float %0, float* %2, align 4, !taffo.info !40, !taffo.initweight !80
+  %3 = load float, float* %2, align 4, !taffo.info !40, !taffo.initweight !80
+  %4 = call float @logf(float %3) #3, !taffo.info !40, !taffo.initweight !81
+  ret float %4, !taffo.info !40, !taffo.initweight !82
+}
+
+; Function Attrs: noinline uwtable
+define internal float @_Z19BlkSchlsEqEuroNoDivfffffifPfS_.9(float, float, float, float, float, i32, float, float*, float*) #0 !taffo.initweight !95 !taffo.funinfo !96 !taffo.sourceFunction !69 {
+  %10 = alloca float, align 4, !taffo.info !4, !taffo.initweight !80
+  %11 = alloca float, align 4, !taffo.info !9, !taffo.initweight !80
+  %12 = alloca float, align 4, !taffo.info !11, !taffo.initweight !80
+  %13 = alloca float, align 4, !taffo.info !14, !taffo.initweight !80
+  %14 = alloca float, align 4, !taffo.info !16, !taffo.initweight !80
+  %15 = alloca i32, align 4
+  %16 = alloca float, align 4, !taffo.info !65, !taffo.initweight !43
+  %17 = alloca float*, align 8, !taffo.info !62, !taffo.initweight !8
+  %18 = alloca float*, align 8, !taffo.info !62, !taffo.initweight !42
+  %19 = alloca float, align 4, !taffo.info !62, !taffo.initweight !8
+  %20 = alloca float, align 4, !taffo.info !97, !taffo.initweight !8
+  %21 = alloca float, align 4, !taffo.info !98, !taffo.initweight !8
+  %22 = alloca float, align 4, !taffo.info !99, !taffo.initweight !8
+  %23 = alloca float, align 4, !taffo.info !100, !taffo.initweight !8
+  %24 = alloca float, align 4, !taffo.info !102, !taffo.initweight !8
+  %25 = alloca float, align 4, !taffo.info !102, !taffo.initweight !8
+  %26 = alloca float, align 4, !taffo.info !105, !taffo.initweight !8
+  %27 = alloca float, align 4, !taffo.info !108, !taffo.initweight !8
+  %28 = alloca float, align 4, !taffo.info !110, !taffo.initweight !8
+  %29 = alloca float, align 4, !taffo.info !112, !taffo.initweight !8
+  %30 = alloca float, align 4, !taffo.info !105, !taffo.initweight !8
+  %31 = alloca float, align 4, !taffo.info !108, !taffo.initweight !8
+  %32 = alloca float, align 4, !taffo.info !114, !taffo.initweight !8
+  %33 = alloca float, align 4, !taffo.info !62, !taffo.initweight !8
+  %34 = alloca float, align 4, !taffo.info !62, !taffo.initweight !8
+  %35 = alloca float, align 4, !taffo.info !62, !taffo.initweight !8
+  %36 = alloca float, align 4, !taffo.info !62, !taffo.initweight !8
+  store float %0, float* %10, align 4, !taffo.info !74, !taffo.initweight !81
+  %37 = bitcast float* %10 to i8*, !taffo.info !116, !taffo.initweight !81
+  store float %1, float* %11, align 4, !taffo.info !75, !taffo.initweight !81
+  %38 = bitcast float* %11 to i8*, !taffo.info !116, !taffo.initweight !81
+  store float %2, float* %12, align 4, !taffo.info !76, !taffo.initweight !81
+  %39 = bitcast float* %12 to i8*, !taffo.info !67, !taffo.initweight !81
+  store float %3, float* %13, align 4, !taffo.info !77, !taffo.initweight !81
+  %40 = bitcast float* %13 to i8*, !taffo.info !116, !taffo.initweight !81
+  store float %4, float* %14, align 4, !taffo.info !78, !taffo.initweight !81
+  %41 = bitcast float* %14 to i8*, !taffo.info !67, !taffo.initweight !81
+  store i32 %5, i32* %15, align 4
+  store float %6, float* %16, align 4, !taffo.info !68, !taffo.initweight !44
+  %42 = bitcast float* %16 to i8*, !taffo.info !67, !taffo.initweight !44
+  store float* %7, float** %17, align 8, !taffo.info !40, !taffo.initweight !38
+  %43 = bitcast float** %17 to i8*, !taffo.info !66, !taffo.initweight !38
+  store float* %8, float** %18, align 8, !taffo.info !40, !taffo.initweight !43
+  %44 = bitcast float** %18 to i8*, !taffo.info !66, !taffo.initweight !43
+  %45 = bitcast float* %19 to i8*, !taffo.info !66, !taffo.initweight !38
+  %46 = bitcast float* %20 to i8*, !taffo.info !117, !taffo.initweight !38
+  %47 = bitcast float* %21 to i8*, !taffo.info !117, !taffo.initweight !38
+  %48 = bitcast float* %22 to i8*, !taffo.info !117, !taffo.initweight !38
+  %49 = bitcast float* %23 to i8*, !taffo.info !117, !taffo.initweight !38
+  %50 = bitcast float* %24 to i8*, !taffo.info !118, !taffo.initweight !38
+  %51 = bitcast float* %25 to i8*, !taffo.info !118, !taffo.initweight !38
+  %52 = bitcast float* %26 to i8*, !taffo.info !119, !taffo.initweight !38
+  %53 = bitcast float* %27 to i8*, !taffo.info !119, !taffo.initweight !38
+  %54 = bitcast float* %28 to i8*, !taffo.info !117, !taffo.initweight !38
+  %55 = bitcast float* %29 to i8*, !taffo.info !117, !taffo.initweight !38
+  %56 = bitcast float* %30 to i8*, !taffo.info !119, !taffo.initweight !38
+  %57 = bitcast float* %31 to i8*, !taffo.info !119, !taffo.initweight !38
+  %58 = bitcast float* %32 to i8*, !taffo.info !117, !taffo.initweight !38
+  %59 = bitcast float* %33 to i8*, !taffo.info !66, !taffo.initweight !38
+  %60 = bitcast float* %34 to i8*, !taffo.info !66, !taffo.initweight !38
+  %61 = bitcast float* %35 to i8*, !taffo.info !66, !taffo.initweight !38
+  %62 = bitcast float* %36 to i8*, !taffo.info !66, !taffo.initweight !38
+  %63 = load float, float* %12, align 4, !taffo.info !11, !taffo.initweight !81
+  store float %63, float* %20, align 4, !taffo.info !76, !taffo.initweight !82
+  %64 = load float, float* %13, align 4, !taffo.info !14, !taffo.initweight !81
+  store float %64, float* %21, align 4, !taffo.info !77, !taffo.initweight !82
+  %65 = load float, float* %14, align 4, !taffo.info !16, !taffo.initweight !81
+  store float %65, float* %22, align 4, !taffo.info !78, !taffo.initweight !82
+  %66 = load float, float* %22, align 4, !taffo.info !99, !taffo.initweight !38
+  %67 = call float @_ZSt4sqrtf.7.12(float %66), !taffo.info !100, !taffo.initweight !42, !taffo.originalCall !55
+  store float %67, float* %23, align 4, !taffo.info !40, !taffo.initweight !38
+  %68 = load float, float* %10, align 4, !taffo.info !4, !taffo.initweight !81
+  %69 = load float, float* %11, align 4, !taffo.info !9, !taffo.initweight !81
+  %70 = fdiv float %68, %69, !taffo.info !120, !taffo.initweight !82
+  %71 = call float @_ZSt3logf.8.10.13(float %70), !taffo.info !123, !taffo.initweight !84, !taffo.originalCall !94
+  store float %71, float* %24, align 4, !taffo.info !74, !taffo.initweight !85
+  %72 = load float, float* %24, align 4, !taffo.info !102, !taffo.initweight !38
+  store float %72, float* %25, align 4, !taffo.info !40, !taffo.initweight !38
+  %73 = load float, float* %21, align 4, !taffo.info !98, !taffo.initweight !38
+  %74 = load float, float* %21, align 4, !taffo.info !98, !taffo.initweight !38
+  %75 = fmul float %73, %74, !taffo.info !124, !taffo.initweight !42
+  store float %75, float* %28, align 4, !taffo.info !40, !taffo.initweight !38
+  %76 = load float, float* %28, align 4, !taffo.info !110, !taffo.initweight !38
+  %77 = fpext float %76 to double, !taffo.info !124, !taffo.initweight !42
+  %78 = fmul double %77, 5.000000e-01, !taffo.info !126, !taffo.initweight !43
+  %79 = fptrunc double %78 to float, !taffo.info !128, !taffo.initweight !44
+  store float %79, float* %28, align 4, !taffo.info !40, !taffo.initweight !38
+  %80 = load float, float* %20, align 4, !taffo.info !97, !taffo.initweight !38
+  %81 = load float, float* %28, align 4, !taffo.info !110, !taffo.initweight !38
+  %82 = fadd float %80, %81, !taffo.info !130, !taffo.initweight !42
+  store float %82, float* %26, align 4, !taffo.info !40, !taffo.initweight !38
+  %83 = load float, float* %26, align 4, !taffo.info !105, !taffo.initweight !38
+  %84 = load float, float* %22, align 4, !taffo.info !99, !taffo.initweight !38
+  %85 = fmul float %83, %84, !taffo.info !132, !taffo.initweight !42
+  store float %85, float* %26, align 4, !taffo.info !40, !taffo.initweight !38
+  %86 = load float, float* %26, align 4, !taffo.info !105, !taffo.initweight !38
+  %87 = load float, float* %25, align 4, !taffo.info !102, !taffo.initweight !38
+  %88 = fadd float %86, %87, !taffo.info !134, !taffo.initweight !42
+  store float %88, float* %26, align 4, !taffo.info !40, !taffo.initweight !38
+  %89 = load float, float* %21, align 4, !taffo.info !98, !taffo.initweight !38
+  %90 = load float, float* %23, align 4, !taffo.info !100, !taffo.initweight !38
+  %91 = fmul float %89, %90, !taffo.info !112, !taffo.initweight !42
+  store float %91, float* %29, align 4, !taffo.info !40, !taffo.initweight !38
+  %92 = load float, float* %26, align 4, !taffo.info !105, !taffo.initweight !38
+  %93 = load float, float* %29, align 4, !taffo.info !112, !taffo.initweight !38
+  %94 = fdiv float %92, %93, !taffo.info !105, !taffo.initweight !42
+  store float %94, float* %26, align 4, !taffo.info !40, !taffo.initweight !38
+  %95 = load float, float* %26, align 4, !taffo.info !105, !taffo.initweight !38
+  %96 = load float, float* %29, align 4, !taffo.info !112, !taffo.initweight !38
+  %97 = fsub float %95, %96, !taffo.info !108, !taffo.initweight !42
+  store float %97, float* %27, align 4, !taffo.info !40, !taffo.initweight !38
+  %98 = load float, float* %26, align 4, !taffo.info !105, !taffo.initweight !38
+  store float %98, float* %30, align 4, !taffo.info !40, !taffo.initweight !38
+  %99 = load float, float* %27, align 4, !taffo.info !108, !taffo.initweight !38
+  store float %99, float* %31, align 4, !taffo.info !40, !taffo.initweight !38
+  %100 = load float, float* %30, align 4, !taffo.info !105, !taffo.initweight !38
+  %101 = call float @_Z4CNDFf.4.14(float %100), !taffo.info !62, !taffo.initweight !42, !taffo.originalCall !137
+  store float %101, float* %33, align 4, !taffo.info !40, !taffo.initweight !38
+  %102 = load float, float* %33, align 4, !taffo.info !62, !taffo.initweight !38
+  %103 = fpext float %102 to double, !taffo.info !62, !taffo.initweight !42
+  %104 = fcmp ogt double %103, 1.000000e+00, !taffo.info !66, !taffo.initweight !43
+  br i1 %104, label %105, label %106, !taffo.info !40, !taffo.initweight !44
+
+; <label>:105:                                    ; preds = %9
+  br label %106
+
+; <label>:106:                                    ; preds = %105, %9
+  %107 = load float, float* %31, align 4, !taffo.info !108, !taffo.initweight !38
+  %108 = call float @_Z4CNDFf.1.17(float %107), !taffo.info !62, !taffo.initweight !42, !taffo.originalCall !138
+  store float %108, float* %34, align 4, !taffo.info !40, !taffo.initweight !38
+  %109 = load float, float* %34, align 4, !taffo.info !62, !taffo.initweight !38
+  %110 = fpext float %109 to double, !taffo.info !62, !taffo.initweight !42
+  %111 = fcmp ogt double %110, 1.000000e+00, !taffo.info !66, !taffo.initweight !43
+  br i1 %111, label %112, label %113, !taffo.info !40, !taffo.initweight !44
+
+; <label>:112:                                    ; preds = %106
+  br label %113
+
+; <label>:113:                                    ; preds = %112, %106
+  %114 = load float, float* %33, align 4, !taffo.info !62, !taffo.initweight !38
+  %115 = load float*, float** %17, align 8, !taffo.info !62, !taffo.initweight !38
+  store float %114, float* %115, align 4, !taffo.info !40, !taffo.initweight !42
+  %116 = load float, float* %34, align 4, !taffo.info !62, !taffo.initweight !38
+  %117 = load float*, float** %18, align 8, !taffo.info !62, !taffo.initweight !43
+  store float %116, float* %117, align 4, !taffo.info !40, !taffo.initweight !44
+  %118 = load float, float* %11, align 4, !taffo.info !9, !taffo.initweight !81
+  %119 = load float, float* %12, align 4, !taffo.info !11, !taffo.initweight !81
+  %120 = fsub float -0.000000e+00, %119, !taffo.info !139, !taffo.initweight !82
+  %121 = load float, float* %14, align 4, !taffo.info !16, !taffo.initweight !81
+  %122 = fmul float %120, %121, !taffo.info !141, !taffo.initweight !82
+  %123 = call float @_ZSt3expf.11.20(float %122), !taffo.info !143, !taffo.initweight !84, !taffo.originalCall !145
+  %124 = fmul float %118, %123, !taffo.info !146, !taffo.initweight !82
+  store float %124, float* %32, align 4, !taffo.info !75, !taffo.initweight !84
+  %125 = load i32, i32* %15, align 4
+  %126 = icmp eq i32 %125, 0, !taffo.info !60
+  br i1 %126, label %127, label %135
+
+; <label>:127:                                    ; preds = %113
+  %128 = load float, float* %10, align 4, !taffo.info !4, !taffo.initweight !81
+  %129 = load float, float* %33, align 4, !taffo.info !62, !taffo.initweight !38
+  %130 = fmul float %128, %129, !taffo.info !147, !taffo.initweight !82
+  %131 = load float, float* %32, align 4, !taffo.info !114, !taffo.initweight !38
+  %132 = load float, float* %34, align 4, !taffo.info !62, !taffo.initweight !38
+  %133 = fmul float %131, %132, !taffo.info !62, !taffo.initweight !42
+  %134 = fsub float %130, %133, !taffo.info !147, !taffo.initweight !84
+  store float %134, float* %19, align 4, !taffo.info !74, !taffo.initweight !85
+  br label %151
+
+; <label>:135:                                    ; preds = %113
+  %136 = load float, float* %33, align 4, !taffo.info !62, !taffo.initweight !38
+  %137 = fpext float %136 to double, !taffo.info !62, !taffo.initweight !42
+  %138 = fsub double 1.000000e+00, %137, !taffo.info !62, !taffo.initweight !43
+  %139 = fptrunc double %138 to float, !taffo.info !62, !taffo.initweight !44
+  store float %139, float* %35, align 4, !taffo.info !40, !taffo.initweight !38
+  %140 = load float, float* %34, align 4, !taffo.info !62, !taffo.initweight !38
+  %141 = fpext float %140 to double, !taffo.info !62, !taffo.initweight !42
+  %142 = fsub double 1.000000e+00, %141, !taffo.info !62, !taffo.initweight !43
+  %143 = fptrunc double %142 to float, !taffo.info !62, !taffo.initweight !44
+  store float %143, float* %36, align 4, !taffo.info !40, !taffo.initweight !38
+  %144 = load float, float* %32, align 4, !taffo.info !114, !taffo.initweight !38
+  %145 = load float, float* %36, align 4, !taffo.info !62, !taffo.initweight !38
+  %146 = fmul float %144, %145, !taffo.info !62, !taffo.initweight !42
+  %147 = load float, float* %10, align 4, !taffo.info !4, !taffo.initweight !81
+  %148 = load float, float* %35, align 4, !taffo.info !62, !taffo.initweight !38
+  %149 = fmul float %147, %148, !taffo.info !147, !taffo.initweight !82
+  %150 = fsub float %146, %149, !taffo.info !147, !taffo.initweight !84
+  store float %150, float* %19, align 4, !taffo.info !74, !taffo.initweight !85
+  br label %151
+
+; <label>:151:                                    ; preds = %135, %127
+  %152 = load float, float* %19, align 4, !taffo.info !62, !taffo.initweight !38
+  ret float %152, !taffo.info !148, !taffo.initweight !42
+}
+
+; Function Attrs: noinline nounwind uwtable
+define internal float @_ZSt3logf.8.10(float) #4 !taffo.initweight !87 !taffo.funinfo !149 !taffo.equivalentChild !150 !taffo.sourceFunction !56 {
+  %2 = alloca float, align 4, !taffo.info !4, !taffo.initweight !85
+  store float %0, float* %2, align 4, !taffo.info !74, !taffo.initweight !87
+  %3 = load float, float* %2, align 4, !taffo.info !4, !taffo.initweight !87
+  %4 = call float @logf(float %3) #3, !taffo.info !4, !taffo.initweight !88
+  ret float %4, !taffo.info !74, !taffo.initweight !151
+}
+
+; Function Attrs: noinline nounwind uwtable
+define internal float @_ZSt3expf.11(float) #4 !taffo.initweight !87 !taffo.funinfo !152 !taffo.equivalentChild !153 !taffo.sourceFunction !45 {
+  %2 = alloca float, align 4, !taffo.info !16, !taffo.initweight !85
+  store float %0, float* %2, align 4, !taffo.info !78, !taffo.initweight !87
+  %3 = load float, float* %2, align 4, !taffo.info !16, !taffo.initweight !87
+  %4 = call float @expf(float %3) #3, !taffo.info !16, !taffo.initweight !88
+  ret float %4, !taffo.info !78, !taffo.initweight !151
+}
+
+; Function Attrs: noinline nounwind uwtable
+define internal float @_ZSt4sqrtf.7.12(float) #4 !taffo.initweight !44 !taffo.funinfo !154 !taffo.sourceFunction !55 {
+  %2 = alloca float, align 4, !taffo.info !99, !taffo.initweight !43
+  store float %0, float* %2, align 4, !taffo.info !40, !taffo.initweight !44
+  %3 = load float, float* %2, align 4, !taffo.info !99, !taffo.initweight !44
+  %4 = call float @sqrtf(float %3) #3, !taffo.info !100, !taffo.initweight !80
+  ret float %4, !taffo.info !155, !taffo.initweight !81
+}
+
+; Function Attrs: noinline nounwind uwtable
+define internal float @_ZSt3logf.8.10.13(float) #4 !taffo.initweight !87 !taffo.funinfo !156 !taffo.sourceFunction !94 {
+  %2 = alloca float, align 4, !taffo.info !120, !taffo.initweight !85
+  store float %0, float* %2, align 4, !taffo.info !74, !taffo.initweight !87
+  %3 = load float, float* %2, align 4, !taffo.info !120, !taffo.initweight !87
+  %4 = call float @logf(float %3) #3, !taffo.info !123, !taffo.initweight !88
+  ret float %4, !taffo.info !157, !taffo.initweight !151
+}
+
+; Function Attrs: noinline uwtable
+define internal float @_Z4CNDFf.4.14(float) #0 !taffo.initweight !44 !taffo.funinfo !158 !taffo.sourceFunction !137 {
+  %2 = alloca float, align 4, !taffo.info !159, !taffo.initweight !43
+  %3 = alloca i32, align 4, !taffo.info !60
+  %4 = alloca float, align 4, !taffo.info !62, !taffo.initweight !8
+  %5 = alloca float, align 4, !taffo.info !159, !taffo.initweight !8
+  %6 = alloca float, align 4, !taffo.info !161, !taffo.initweight !8
+  %7 = alloca float, align 4, !taffo.info !161, !taffo.initweight !8
+  %8 = alloca float, align 4, !taffo.info !164, !taffo.initweight !8
+  %9 = alloca float, align 4, !taffo.info !167, !taffo.initweight !8
+  %10 = alloca float, align 4, !taffo.info !170, !taffo.initweight !8
+  %11 = alloca float, align 4, !taffo.info !173
+  %12 = alloca float, align 4, !taffo.info !175
+  %13 = alloca float, align 4, !taffo.info !62, !taffo.initweight !8
+  %14 = alloca float, align 4, !taffo.info !177, !taffo.initweight !8
+  %15 = alloca float, align 4, !taffo.info !180, !taffo.initweight !8
+  %16 = alloca float, align 4, !taffo.info !182, !taffo.initweight !8
+  store float %0, float* %2, align 4, !taffo.info !40, !taffo.initweight !44
+  %17 = bitcast float* %2 to i8*, !taffo.info !119, !taffo.initweight !44
+  %18 = bitcast float* %4 to i8*, !taffo.info !66, !taffo.initweight !38
+  %19 = bitcast float* %5 to i8*, !taffo.info !119, !taffo.initweight !38
+  %20 = bitcast float* %6 to i8*, !taffo.info !184, !taffo.initweight !38
+  %21 = bitcast float* %7 to i8*, !taffo.info !184, !taffo.initweight !38
+  %22 = bitcast float* %8 to i8*, !taffo.info !185, !taffo.initweight !38
+  %23 = bitcast float* %9 to i8*, !taffo.info !186, !taffo.initweight !38
+  %24 = bitcast float* %10 to i8*, !taffo.info !187, !taffo.initweight !38
+  %25 = bitcast float* %13 to i8*, !taffo.info !66, !taffo.initweight !38
+  %26 = bitcast float* %14 to i8*, !taffo.info !188, !taffo.initweight !38
+  %27 = bitcast float* %15 to i8*, !taffo.info !188, !taffo.initweight !38
+  %28 = bitcast float* %16 to i8*, !taffo.info !188, !taffo.initweight !38
+  %29 = load float, float* %2, align 4, !taffo.info !159, !taffo.initweight !44
+  %30 = fpext float %29 to double, !taffo.info !105, !taffo.initweight !80
+  %31 = fcmp olt double %30, 0.000000e+00, !taffo.info !119, !taffo.initweight !81
+  br i1 %31, label %32, label %35, !taffo.info !40, !taffo.initweight !82
+
+; <label>:32:                                     ; preds = %1
+  %33 = load float, float* %2, align 4, !taffo.info !159, !taffo.initweight !44
+  %34 = fsub float -0.000000e+00, %33, !taffo.info !189, !taffo.initweight !80
+  store float %34, float* %2, align 4, !taffo.info !40, !taffo.initweight !44
+  store i32 1, i32* %3, align 4
+  br label %36
+
+; <label>:35:                                     ; preds = %1
+  store i32 0, i32* %3, align 4
+  br label %36
+
+; <label>:36:                                     ; preds = %35, %32
+  %37 = load float, float* %2, align 4, !taffo.info !159, !taffo.initweight !44
+  store float %37, float* %5, align 4, !taffo.info !40, !taffo.initweight !80
+  %38 = load float, float* %2, align 4, !taffo.info !159, !taffo.initweight !44
+  %39 = load float, float* %2, align 4, !taffo.info !159, !taffo.initweight !44
+  %40 = fmul float %38, %39, !taffo.info !191, !taffo.initweight !80
+  %41 = fmul float -5.000000e-01, %40, !taffo.info !194, !taffo.initweight !81
+  %42 = call float @_ZSt3expf.5.6.15.16(float %41), !taffo.info !161, !taffo.initweight !82, !taffo.originalCall !91
+  store float %42, float* %7, align 4, !taffo.info !40, !taffo.initweight !84
+  %43 = load float, float* %7, align 4, !taffo.info !161, !taffo.initweight !38
+  store float %43, float* %6, align 4, !taffo.info !40, !taffo.initweight !38
+  %44 = load float, float* %6, align 4, !taffo.info !161, !taffo.initweight !38
+  %45 = fpext float %44 to double, !taffo.info !161, !taffo.initweight !42
+  %46 = fmul double %45, 0x3FD9884533D43651, !taffo.info !161, !taffo.initweight !43
+  %47 = fptrunc double %46 to float, !taffo.info !161, !taffo.initweight !44
+  store float %47, float* %6, align 4, !taffo.info !40, !taffo.initweight !38
+  %48 = load float, float* %5, align 4, !taffo.info !159, !taffo.initweight !38
+  %49 = fpext float %48 to double, !taffo.info !159, !taffo.initweight !42
+  %50 = fmul double 0x3FCDA6711871100E, %49, !taffo.info !197, !taffo.initweight !43
+  %51 = fptrunc double %50 to float, !taffo.info !199, !taffo.initweight !44
+  store float %51, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %52 = load float, float* %8, align 4, !taffo.info !164, !taffo.initweight !38
+  %53 = fpext float %52 to double, !taffo.info !199, !taffo.initweight !42
+  %54 = fadd double 1.000000e+00, %53, !taffo.info !201, !taffo.initweight !43
+  %55 = fptrunc double %54 to float, !taffo.info !201, !taffo.initweight !44
+  store float %55, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %56 = load float, float* %8, align 4, !taffo.info !164, !taffo.initweight !38
+  %57 = fpext float %56 to double, !taffo.info !164, !taffo.initweight !42
+  %58 = fdiv double 1.000000e+00, %57, !taffo.info !203, !taffo.initweight !43
+  %59 = fptrunc double %58 to float, !taffo.info !205, !taffo.initweight !44
+  store float %59, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %60 = load float, float* %8, align 4, !taffo.info !164, !taffo.initweight !38
+  %61 = load float, float* %8, align 4, !taffo.info !164, !taffo.initweight !38
+  %62 = fmul float %60, %61, !taffo.info !167, !taffo.initweight !42
+  store float %62, float* %9, align 4, !taffo.info !40, !taffo.initweight !38
+  %63 = load float, float* %9, align 4, !taffo.info !167, !taffo.initweight !38
+  %64 = load float, float* %8, align 4, !taffo.info !164, !taffo.initweight !38
+  %65 = fmul float %63, %64, !taffo.info !170, !taffo.initweight !42
+  store float %65, float* %10, align 4, !taffo.info !40, !taffo.initweight !38
+  %66 = load float, float* %10, align 4, !taffo.info !170, !taffo.initweight !38
+  %67 = load float, float* %8, align 4, !taffo.info !164, !taffo.initweight !38
+  %68 = fmul float %66, %67, !taffo.info !207, !taffo.initweight !42
+  store float %68, float* %11, align 4, !taffo.info !40, !taffo.initweight !43
+  %69 = load float, float* %11, align 4, !taffo.info !173
+  %70 = load float, float* %8, align 4, !taffo.info !164, !taffo.initweight !38
+  %71 = fmul float %69, %70, !taffo.info !209, !taffo.initweight !42
+  store float %71, float* %12, align 4, !taffo.info !40, !taffo.initweight !43
+  %72 = load float, float* %8, align 4, !taffo.info !164, !taffo.initweight !38
+  %73 = fpext float %72 to double, !taffo.info !164, !taffo.initweight !42
+  %74 = fmul double %73, 0x3FD470BF3A92F8EC, !taffo.info !211, !taffo.initweight !43
+  %75 = fptrunc double %74 to float, !taffo.info !214, !taffo.initweight !44
+  store float %75, float* %14, align 4, !taffo.info !40, !taffo.initweight !38
+  %76 = load float, float* %9, align 4, !taffo.info !167, !taffo.initweight !38
+  %77 = fpext float %76 to double, !taffo.info !167, !taffo.initweight !42
+  %78 = fmul double %77, 0xBFD6D1F0E5A8325B, !taffo.info !216, !taffo.initweight !43
+  %79 = fptrunc double %78 to float, !taffo.info !219, !taffo.initweight !44
+  store float %79, float* %15, align 4, !taffo.info !40, !taffo.initweight !38
+  %80 = load float, float* %10, align 4, !taffo.info !170, !taffo.initweight !38
+  %81 = fpext float %80 to double, !taffo.info !170, !taffo.initweight !42
+  %82 = fmul double %81, 0x3FFC80EF025F5E68, !taffo.info !221, !taffo.initweight !43
+  %83 = fptrunc double %82 to float, !taffo.info !224, !taffo.initweight !44
+  store float %83, float* %16, align 4, !taffo.info !40, !taffo.initweight !38
+  %84 = load float, float* %15, align 4, !taffo.info !180, !taffo.initweight !38
+  %85 = load float, float* %16, align 4, !taffo.info !182, !taffo.initweight !38
+  %86 = fadd float %84, %85, !taffo.info !226, !taffo.initweight !42
+  store float %86, float* %15, align 4, !taffo.info !40, !taffo.initweight !38
+  %87 = load float, float* %11, align 4, !taffo.info !173
+  %88 = fpext float %87 to double, !taffo.info !173
+  %89 = fmul double %88, 0xBFFD23DD4EF278D0, !taffo.info !228
+  %90 = fptrunc double %89 to float, !taffo.info !230
+  store float %90, float* %16, align 4, !taffo.info !40, !taffo.initweight !38
+  %91 = load float, float* %15, align 4, !taffo.info !180, !taffo.initweight !38
+  %92 = load float, float* %16, align 4, !taffo.info !182, !taffo.initweight !38
+  %93 = fadd float %91, %92, !taffo.info !232, !taffo.initweight !42
+  store float %93, float* %15, align 4, !taffo.info !40, !taffo.initweight !38
+  %94 = load float, float* %12, align 4, !taffo.info !175
+  %95 = fpext float %94 to double, !taffo.info !175
+  %96 = fmul double %95, 0x3FF548CDD6F42943, !taffo.info !235
+  %97 = fptrunc double %96 to float, !taffo.info !237
+  store float %97, float* %16, align 4, !taffo.info !40, !taffo.initweight !38
+  %98 = load float, float* %15, align 4, !taffo.info !180, !taffo.initweight !38
+  %99 = load float, float* %16, align 4, !taffo.info !182, !taffo.initweight !38
+  %100 = fadd float %98, %99, !taffo.info !180, !taffo.initweight !42
+  store float %100, float* %15, align 4, !taffo.info !40, !taffo.initweight !38
+  %101 = load float, float* %15, align 4, !taffo.info !180, !taffo.initweight !38
+  %102 = load float, float* %14, align 4, !taffo.info !177, !taffo.initweight !38
+  %103 = fadd float %101, %102, !taffo.info !177, !taffo.initweight !42
+  store float %103, float* %14, align 4, !taffo.info !40, !taffo.initweight !38
+  %104 = load float, float* %14, align 4, !taffo.info !177, !taffo.initweight !38
+  %105 = load float, float* %6, align 4, !taffo.info !161, !taffo.initweight !38
+  %106 = fmul float %104, %105, !taffo.info !62, !taffo.initweight !42
+  store float %106, float* %13, align 4, !taffo.info !40, !taffo.initweight !38
+  %107 = load float, float* %13, align 4, !taffo.info !62, !taffo.initweight !38
+  %108 = fpext float %107 to double, !taffo.info !62, !taffo.initweight !42
+  %109 = fsub double 1.000000e+00, %108, !taffo.info !62, !taffo.initweight !43
+  %110 = fptrunc double %109 to float, !taffo.info !62, !taffo.initweight !44
+  store float %110, float* %13, align 4, !taffo.info !40, !taffo.initweight !38
+  %111 = load float, float* %13, align 4, !taffo.info !62, !taffo.initweight !38
+  store float %111, float* %4, align 4, !taffo.info !40, !taffo.initweight !38
+  %112 = load i32, i32* %3, align 4, !taffo.info !60
+  %113 = icmp ne i32 %112, 0, !taffo.info !60
+  br i1 %113, label %114, label %119
+
+; <label>:114:                                    ; preds = %36
+  %115 = load float, float* %4, align 4, !taffo.info !62, !taffo.initweight !38
+  %116 = fpext float %115 to double, !taffo.info !62, !taffo.initweight !42
+  %117 = fsub double 1.000000e+00, %116, !taffo.info !62, !taffo.initweight !43
+  %118 = fptrunc double %117 to float, !taffo.info !62, !taffo.initweight !44
+  store float %118, float* %4, align 4, !taffo.info !40, !taffo.initweight !38
+  br label %119
+
+; <label>:119:                                    ; preds = %114, %36
+  %120 = load float, float* %4, align 4, !taffo.info !62, !taffo.initweight !38
+  ret float %120, !taffo.info !148, !taffo.initweight !42
+}
+
+; Function Attrs: noinline nounwind uwtable
+define internal float @_ZSt3expf.5.6.15(float) #4 !taffo.initweight !85 !taffo.funinfo !39 !taffo.equivalentChild !238 !taffo.sourceFunction !90 {
+  %2 = alloca float, align 4, !taffo.info !40, !taffo.initweight !84
+  store float %0, float* %2, align 4, !taffo.info !40, !taffo.initweight !85
+  %3 = load float, float* %2, align 4, !taffo.info !40, !taffo.initweight !85
+  %4 = call float @expf(float %3) #3, !taffo.info !40, !taffo.initweight !87
+  ret float %4, !taffo.info !40, !taffo.initweight !88
+}
+
+; Function Attrs: noinline nounwind uwtable
+define internal float @_ZSt3expf.5.6.15.16(float) #4 !taffo.initweight !85 !taffo.funinfo !239 !taffo.sourceFunction !91 {
+  %2 = alloca float, align 4, !taffo.info !194, !taffo.initweight !84
+  store float %0, float* %2, align 4, !taffo.info !40, !taffo.initweight !85
+  %3 = load float, float* %2, align 4, !taffo.info !194, !taffo.initweight !85
+  %4 = call float @expf(float %3) #3, !taffo.info !161, !taffo.initweight !87
+  ret float %4, !taffo.info !240, !taffo.initweight !88
+}
+
+; Function Attrs: noinline uwtable
+define internal float @_Z4CNDFf.1.17(float) #0 !taffo.initweight !44 !taffo.funinfo !241 !taffo.sourceFunction !138 {
+  %2 = alloca float, align 4, !taffo.info !242, !taffo.initweight !43
+  %3 = alloca i32, align 4, !taffo.info !60
+  %4 = alloca float, align 4, !taffo.info !62, !taffo.initweight !8
+  %5 = alloca float, align 4, !taffo.info !242, !taffo.initweight !8
+  %6 = alloca float, align 4, !taffo.info !161, !taffo.initweight !8
+  %7 = alloca float, align 4, !taffo.info !161, !taffo.initweight !8
+  %8 = alloca float, align 4, !taffo.info !244, !taffo.initweight !8
+  %9 = alloca float, align 4, !taffo.info !246, !taffo.initweight !8
+  %10 = alloca float, align 4, !taffo.info !248, !taffo.initweight !8
+  %11 = alloca float, align 4, !taffo.info !250
+  %12 = alloca float, align 4, !taffo.info !252
+  %13 = alloca float, align 4, !taffo.info !62, !taffo.initweight !8
+  %14 = alloca float, align 4, !taffo.info !254, !taffo.initweight !8
+  %15 = alloca float, align 4, !taffo.info !256, !taffo.initweight !8
+  %16 = alloca float, align 4, !taffo.info !258, !taffo.initweight !8
+  store float %0, float* %2, align 4, !taffo.info !40, !taffo.initweight !44
+  %17 = bitcast float* %2 to i8*, !taffo.info !119, !taffo.initweight !44
+  %18 = bitcast float* %4 to i8*, !taffo.info !66, !taffo.initweight !38
+  %19 = bitcast float* %5 to i8*, !taffo.info !119, !taffo.initweight !38
+  %20 = bitcast float* %6 to i8*, !taffo.info !184, !taffo.initweight !38
+  %21 = bitcast float* %7 to i8*, !taffo.info !184, !taffo.initweight !38
+  %22 = bitcast float* %8 to i8*, !taffo.info !185, !taffo.initweight !38
+  %23 = bitcast float* %9 to i8*, !taffo.info !186, !taffo.initweight !38
+  %24 = bitcast float* %10 to i8*, !taffo.info !187, !taffo.initweight !38
+  %25 = bitcast float* %13 to i8*, !taffo.info !66, !taffo.initweight !38
+  %26 = bitcast float* %14 to i8*, !taffo.info !188, !taffo.initweight !38
+  %27 = bitcast float* %15 to i8*, !taffo.info !188, !taffo.initweight !38
+  %28 = bitcast float* %16 to i8*, !taffo.info !188, !taffo.initweight !38
+  %29 = load float, float* %2, align 4, !taffo.info !242, !taffo.initweight !44
+  %30 = fpext float %29 to double, !taffo.info !108, !taffo.initweight !80
+  %31 = fcmp olt double %30, 0.000000e+00, !taffo.info !119, !taffo.initweight !81
+  br i1 %31, label %32, label %35, !taffo.info !40, !taffo.initweight !82
+
+; <label>:32:                                     ; preds = %1
+  %33 = load float, float* %2, align 4, !taffo.info !242, !taffo.initweight !44
+  %34 = fsub float -0.000000e+00, %33, !taffo.info !260, !taffo.initweight !80
+  store float %34, float* %2, align 4, !taffo.info !40, !taffo.initweight !44
+  store i32 1, i32* %3, align 4
+  br label %36
+
+; <label>:35:                                     ; preds = %1
+  store i32 0, i32* %3, align 4
+  br label %36
+
+; <label>:36:                                     ; preds = %35, %32
+  %37 = load float, float* %2, align 4, !taffo.info !242, !taffo.initweight !44
+  store float %37, float* %5, align 4, !taffo.info !40, !taffo.initweight !80
+  %38 = load float, float* %2, align 4, !taffo.info !242, !taffo.initweight !44
+  %39 = load float, float* %2, align 4, !taffo.info !242, !taffo.initweight !44
+  %40 = fmul float %38, %39, !taffo.info !262, !taffo.initweight !80
+  %41 = fmul float -5.000000e-01, %40, !taffo.info !264, !taffo.initweight !81
+  %42 = call float @_ZSt3expf.2.3.18.19(float %41), !taffo.info !161, !taffo.initweight !82, !taffo.originalCall !89
+  store float %42, float* %7, align 4, !taffo.info !40, !taffo.initweight !84
+  %43 = load float, float* %7, align 4, !taffo.info !161, !taffo.initweight !38
+  store float %43, float* %6, align 4, !taffo.info !40, !taffo.initweight !38
+  %44 = load float, float* %6, align 4, !taffo.info !161, !taffo.initweight !38
+  %45 = fpext float %44 to double, !taffo.info !161, !taffo.initweight !42
+  %46 = fmul double %45, 0x3FD9884533D43651, !taffo.info !161, !taffo.initweight !43
+  %47 = fptrunc double %46 to float, !taffo.info !161, !taffo.initweight !44
+  store float %47, float* %6, align 4, !taffo.info !40, !taffo.initweight !38
+  %48 = load float, float* %5, align 4, !taffo.info !242, !taffo.initweight !38
+  %49 = fpext float %48 to double, !taffo.info !242, !taffo.initweight !42
+  %50 = fmul double 0x3FCDA6711871100E, %49, !taffo.info !266, !taffo.initweight !43
+  %51 = fptrunc double %50 to float, !taffo.info !268, !taffo.initweight !44
+  store float %51, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %52 = load float, float* %8, align 4, !taffo.info !244, !taffo.initweight !38
+  %53 = fpext float %52 to double, !taffo.info !268, !taffo.initweight !42
+  %54 = fadd double 1.000000e+00, %53, !taffo.info !270, !taffo.initweight !43
+  %55 = fptrunc double %54 to float, !taffo.info !270, !taffo.initweight !44
+  store float %55, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %56 = load float, float* %8, align 4, !taffo.info !244, !taffo.initweight !38
+  %57 = fpext float %56 to double, !taffo.info !244, !taffo.initweight !42
+  %58 = fdiv double 1.000000e+00, %57, !taffo.info !272, !taffo.initweight !43
+  %59 = fptrunc double %58 to float, !taffo.info !274, !taffo.initweight !44
+  store float %59, float* %8, align 4, !taffo.info !40, !taffo.initweight !38
+  %60 = load float, float* %8, align 4, !taffo.info !244, !taffo.initweight !38
+  %61 = load float, float* %8, align 4, !taffo.info !244, !taffo.initweight !38
+  %62 = fmul float %60, %61, !taffo.info !246, !taffo.initweight !42
+  store float %62, float* %9, align 4, !taffo.info !40, !taffo.initweight !38
+  %63 = load float, float* %9, align 4, !taffo.info !246, !taffo.initweight !38
+  %64 = load float, float* %8, align 4, !taffo.info !244, !taffo.initweight !38
+  %65 = fmul float %63, %64, !taffo.info !248, !taffo.initweight !42
+  store float %65, float* %10, align 4, !taffo.info !40, !taffo.initweight !38
+  %66 = load float, float* %10, align 4, !taffo.info !248, !taffo.initweight !38
+  %67 = load float, float* %8, align 4, !taffo.info !244, !taffo.initweight !38
+  %68 = fmul float %66, %67, !taffo.info !276, !taffo.initweight !42
+  store float %68, float* %11, align 4, !taffo.info !40, !taffo.initweight !43
+  %69 = load float, float* %11, align 4, !taffo.info !250
+  %70 = load float, float* %8, align 4, !taffo.info !244, !taffo.initweight !38
+  %71 = fmul float %69, %70, !taffo.info !277, !taffo.initweight !42
+  store float %71, float* %12, align 4, !taffo.info !40, !taffo.initweight !43
+  %72 = load float, float* %8, align 4, !taffo.info !244, !taffo.initweight !38
+  %73 = fpext float %72 to double, !taffo.info !244, !taffo.initweight !42
+  %74 = fmul double %73, 0x3FD470BF3A92F8EC, !taffo.info !278, !taffo.initweight !43
+  %75 = fptrunc double %74 to float, !taffo.info !280, !taffo.initweight !44
+  store float %75, float* %14, align 4, !taffo.info !40, !taffo.initweight !38
+  %76 = load float, float* %9, align 4, !taffo.info !246, !taffo.initweight !38
+  %77 = fpext float %76 to double, !taffo.info !246, !taffo.initweight !42
+  %78 = fmul double %77, 0xBFD6D1F0E5A8325B, !taffo.info !282, !taffo.initweight !43
+  %79 = fptrunc double %78 to float, !taffo.info !284, !taffo.initweight !44
+  store float %79, float* %15, align 4, !taffo.info !40, !taffo.initweight !38
+  %80 = load float, float* %10, align 4, !taffo.info !248, !taffo.initweight !38
+  %81 = fpext float %80 to double, !taffo.info !248, !taffo.initweight !42
+  %82 = fmul double %81, 0x3FFC80EF025F5E68, !taffo.info !286, !taffo.initweight !43
+  %83 = fptrunc double %82 to float, !taffo.info !288, !taffo.initweight !44
+  store float %83, float* %16, align 4, !taffo.info !40, !taffo.initweight !38
+  %84 = load float, float* %15, align 4, !taffo.info !256, !taffo.initweight !38
+  %85 = load float, float* %16, align 4, !taffo.info !258, !taffo.initweight !38
+  %86 = fadd float %84, %85, !taffo.info !290, !taffo.initweight !42
+  store float %86, float* %15, align 4, !taffo.info !40, !taffo.initweight !38
+  %87 = load float, float* %11, align 4, !taffo.info !250
+  %88 = fpext float %87 to double, !taffo.info !250
+  %89 = fmul double %88, 0xBFFD23DD4EF278D0, !taffo.info !292
+  %90 = fptrunc double %89 to float, !taffo.info !294
+  store float %90, float* %16, align 4, !taffo.info !40, !taffo.initweight !38
+  %91 = load float, float* %15, align 4, !taffo.info !256, !taffo.initweight !38
+  %92 = load float, float* %16, align 4, !taffo.info !258, !taffo.initweight !38
+  %93 = fadd float %91, %92, !taffo.info !296, !taffo.initweight !42
+  store float %93, float* %15, align 4, !taffo.info !40, !taffo.initweight !38
+  %94 = load float, float* %12, align 4, !taffo.info !252
+  %95 = fpext float %94 to double, !taffo.info !252
+  %96 = fmul double %95, 0x3FF548CDD6F42943, !taffo.info !298
+  %97 = fptrunc double %96 to float, !taffo.info !300
+  store float %97, float* %16, align 4, !taffo.info !40, !taffo.initweight !38
+  %98 = load float, float* %15, align 4, !taffo.info !256, !taffo.initweight !38
+  %99 = load float, float* %16, align 4, !taffo.info !258, !taffo.initweight !38
+  %100 = fadd float %98, %99, !taffo.info !256, !taffo.initweight !42
+  store float %100, float* %15, align 4, !taffo.info !40, !taffo.initweight !38
+  %101 = load float, float* %15, align 4, !taffo.info !256, !taffo.initweight !38
+  %102 = load float, float* %14, align 4, !taffo.info !254, !taffo.initweight !38
+  %103 = fadd float %101, %102, !taffo.info !254, !taffo.initweight !42
+  store float %103, float* %14, align 4, !taffo.info !40, !taffo.initweight !38
+  %104 = load float, float* %14, align 4, !taffo.info !254, !taffo.initweight !38
+  %105 = load float, float* %6, align 4, !taffo.info !161, !taffo.initweight !38
+  %106 = fmul float %104, %105, !taffo.info !62, !taffo.initweight !42
+  store float %106, float* %13, align 4, !taffo.info !40, !taffo.initweight !38
+  %107 = load float, float* %13, align 4, !taffo.info !62, !taffo.initweight !38
+  %108 = fpext float %107 to double, !taffo.info !62, !taffo.initweight !42
+  %109 = fsub double 1.000000e+00, %108, !taffo.info !62, !taffo.initweight !43
+  %110 = fptrunc double %109 to float, !taffo.info !62, !taffo.initweight !44
+  store float %110, float* %13, align 4, !taffo.info !40, !taffo.initweight !38
+  %111 = load float, float* %13, align 4, !taffo.info !62, !taffo.initweight !38
+  store float %111, float* %4, align 4, !taffo.info !40, !taffo.initweight !38
+  %112 = load i32, i32* %3, align 4, !taffo.info !60
+  %113 = icmp ne i32 %112, 0, !taffo.info !60
+  br i1 %113, label %114, label %119
+
+; <label>:114:                                    ; preds = %36
+  %115 = load float, float* %4, align 4, !taffo.info !62, !taffo.initweight !38
+  %116 = fpext float %115 to double, !taffo.info !62, !taffo.initweight !42
+  %117 = fsub double 1.000000e+00, %116, !taffo.info !62, !taffo.initweight !43
+  %118 = fptrunc double %117 to float, !taffo.info !62, !taffo.initweight !44
+  store float %118, float* %4, align 4, !taffo.info !40, !taffo.initweight !38
+  br label %119
+
+; <label>:119:                                    ; preds = %114, %36
+  %120 = load float, float* %4, align 4, !taffo.info !62, !taffo.initweight !38
+  ret float %120, !taffo.info !148, !taffo.initweight !42
+}
+
+; Function Attrs: noinline nounwind uwtable
+define internal float @_ZSt3expf.2.3.18(float) #4 !taffo.initweight !85 !taffo.funinfo !39 !taffo.equivalentChild !301 !taffo.sourceFunction !86 {
+  %2 = alloca float, align 4, !taffo.info !40, !taffo.initweight !84
+  store float %0, float* %2, align 4, !taffo.info !40, !taffo.initweight !85
+  %3 = load float, float* %2, align 4, !taffo.info !40, !taffo.initweight !85
+  %4 = call float @expf(float %3) #3, !taffo.info !40, !taffo.initweight !87
+  ret float %4, !taffo.info !40, !taffo.initweight !88
+}
+
+; Function Attrs: noinline nounwind uwtable
+define internal float @_ZSt3expf.2.3.18.19(float) #4 !taffo.initweight !85 !taffo.funinfo !302 !taffo.sourceFunction !89 {
+  %2 = alloca float, align 4, !taffo.info !264, !taffo.initweight !84
+  store float %0, float* %2, align 4, !taffo.info !40, !taffo.initweight !85
+  %3 = load float, float* %2, align 4, !taffo.info !264, !taffo.initweight !85
+  %4 = call float @expf(float %3) #3, !taffo.info !161, !taffo.initweight !87
+  ret float %4, !taffo.info !240, !taffo.initweight !88
+}
+
+; Function Attrs: noinline nounwind uwtable
+define internal float @_ZSt3expf.11.20(float) #4 !taffo.initweight !87 !taffo.funinfo !303 !taffo.sourceFunction !145 {
+  %2 = alloca float, align 4, !taffo.info !141, !taffo.initweight !85
+  store float %0, float* %2, align 4, !taffo.info !78, !taffo.initweight !87
+  %3 = load float, float* %2, align 4, !taffo.info !141, !taffo.initweight !87
+  %4 = call float @expf(float %3) #3, !taffo.info !143, !taffo.initweight !88
+  ret float %4, !taffo.info !304, !taffo.initweight !151
+}
+
+; Function Attrs: noinline nounwind uwtable
+define internal float @_ZSt3expf.21(float) #4 !taffo.initweight !81 !taffo.funinfo !39 !taffo.sourceFunction !45 {
+  %2 = alloca float, align 4, !taffo.info !40, !taffo.initweight !80
+  store float %0, float* %2, align 4, !taffo.info !40, !taffo.initweight !81
+  %3 = load float, float* %2, align 4, !taffo.info !40, !taffo.initweight !81
+  %4 = call float @expf(float %3) #3, !taffo.info !40, !taffo.initweight !82
+  ret float %4, !taffo.info !40, !taffo.initweight !84
+}
+
+attributes #0 = { noinline uwtable "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "min-legal-vector-width"="0" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #1 = { "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #2 = { nounwind "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #3 = { nounwind }
+attributes #4 = { noinline nounwind uwtable "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "min-legal-vector-width"="0" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #5 = { noinline norecurse uwtable "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "min-legal-vector-width"="0" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #6 = { noreturn nounwind "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #7 = { noreturn nounwind }
+
+!llvm.ident = !{!31}
+!llvm.module.flags = !{!32}
+
+!0 = !{i1 false, !1, i1 false, i2 0}
+!1 = !{double 0.000000e+00, double 0.000000e+00}
+!2 = !{i1 false, !3, i1 false, i2 0}
+!3 = !{double 0xFFF0000000000000, double 0x7FF0000000000000}
+!4 = !{!5, !6, !7, i2 1}
+!5 = !{!"fixp", i32 32, i32 31}
+!6 = !{double 3.500000e-01, double 8.400000e-01}
+!7 = !{double 1.000000e-08}
+!8 = !{i32 0}
+!9 = !{!5, !10, !7, i2 1}
+!10 = !{double 3.400000e-01, double 9.200000e-01}
+!11 = !{!5, !12, !13, i2 1}
+!12 = !{double 2.750000e-02, double 1.000000e-01}
+!13 = !{double 0.000000e+00}
+!14 = !{!5, !15, !7, i2 1}
+!15 = !{double 5.000000e-02, double 6.500000e-01}
+!16 = !{!5, !17, !13, i2 1}
+!17 = !{double 5.000000e-02, double 1.000000e+00}
+!18 = !{!0}
+!19 = !{i1 false, !20, i1 false, i2 0}
+!20 = !{double 0.000000e+00, double 1.150000e+02}
+!21 = !{i1 false, !22, i1 false, i2 0}
+!22 = !{double 0.000000e+00, double 1.160000e+02}
+!23 = !{i1 false, !24, i1 false, i2 0}
+!24 = !{double 0.000000e+00, double 1.140000e+02}
+!25 = !{i1 false, !26, i1 false, i2 0}
+!26 = !{double 0.000000e+00, double 1.050000e+02}
+!27 = !{i1 false, !28, i1 false, i2 0}
+!28 = !{double 0.000000e+00, double 1.020000e+02}
+!29 = !{i1 false, !30, i1 false, i2 0}
+!30 = !{double 0.000000e+00, double 1.190000e+02}
+!31 = !{!"clang version 8.0.1 (https://llvm.org/git/clang.git ccfe04576c13497b9c422ceef0b6efe99077a392) (https://llvm.org/git/llvm.git 5563a6a769b48912b9c8052124520610966eda28)"}
+!32 = !{i32 1, !"wchar_size", i32 4}
+!33 = !{}
+!34 = !{i32 -1}
+!35 = !{i32 0, i1 false}
+!36 = !{i32 -1, i32 -1, i32 -1}
+!37 = !{i32 0, i1 false, i32 0, i1 false, i32 0, i1 false}
+!38 = !{i32 1}
+!39 = !{i32 1, !40}
+!40 = !{i1 false, i1 false, i1 false, i2 1}
+!41 = !{float (float)* @_Z4CNDFf.1, float (float)* @_Z4CNDFf.1}
+!42 = !{i32 2}
+!43 = !{i32 3}
+!44 = !{i32 4}
+!45 = !{float (float)* @_ZSt3expf}
+!46 = !{i32 -1, i32 -1, i32 -1, i32 -1}
+!47 = !{i32 0, i1 false, i32 0, i1 false, i32 0, i1 false, i32 0, i1 false}
+!48 = !{float (float)* @_ZSt3expf.2, float (float)* @_ZSt3expf.5, float (float)* @_ZSt3expf.11, float (float)* @_ZSt3expf.21, float (float)* @_ZSt3expf.21}
+!49 = !{i32 1, i32 1, i32 1, i32 1, i32 1, i32 -1, i32 1, i32 1, i32 1}
+!50 = !{i32 1, !40, i32 1, !40, i32 1, !40, i32 1, !40, i32 1, !40, i32 0, i1 false, i32 1, !40, i32 1, !40, i32 1, !40}
+!51 = !{float (float, float, float, float, float, i32, float, float*, float*)* @_Z19BlkSchlsEqEuroNoDivfffffifPfS_.9}
+!52 = !{float (float)* @_ZSt4sqrtf}
+!53 = !{float (float)* @_ZSt3logf}
+!54 = !{float (float)* @_Z4CNDFf}
+!55 = !{float (float)* @_ZSt4sqrtf.7}
+!56 = !{float (float)* @_ZSt3logf.8}
+!57 = !{i32 -1, i32 -1, i32 -1, i32 -1, i32 -1}
+!58 = !{i32 0, i1 false, i32 0, i1 false, i32 0, i1 false, i32 0, i1 false, i32 0, i1 false}
+!59 = !{i1 true}
+!60 = !{i1 false, !61, i1 false, i2 0}
+!61 = !{double 0.000000e+00, double 1.000000e+00}
+!62 = !{!63, !3, i1 false, i2 1}
+!63 = !{!"fixp", i32 -32, i32 0}
+!64 = !{!"price_orig"}
+!65 = !{!5, !61, !13, i2 1}
+!66 = !{!63, i1 false, i1 false, i2 1}
+!67 = !{!5, i1 false, !13, i2 1}
+!68 = !{i1 false, !61, !13, i2 1}
+!69 = !{float (float, float, float, float, float, i32, float, float*, float*)* @_Z19BlkSchlsEqEuroNoDivfffffifPfS_}
+!70 = !{i1 false, !71, i1 false, i2 0}
+!71 = !{double 1.000000e+00, double 1.000000e+00}
+!72 = !{i32 -1, i32 -1}
+!73 = !{i32 0, i1 false, i32 0, i1 false}
+!74 = !{i1 false, !6, !7, i2 1}
+!75 = !{i1 false, !10, !7, i2 1}
+!76 = !{i1 false, !12, !13, i2 1}
+!77 = !{i1 false, !15, !7, i2 1}
+!78 = !{i1 false, !17, !13, i2 1}
+!79 = !{float (float)* @_Z4CNDFf.1.17}
+!80 = !{i32 5}
+!81 = !{i32 6}
+!82 = !{i32 7}
+!83 = !{float (float)* @_ZSt3expf.2}
+!84 = !{i32 8}
+!85 = !{i32 9}
+!86 = !{float (float)* @_ZSt3expf.2.3}
+!87 = !{i32 10}
+!88 = !{i32 11}
+!89 = !{float (float)* @_ZSt3expf.2.3.18}
+!90 = !{float (float)* @_ZSt3expf.5.6}
+!91 = !{float (float)* @_ZSt3expf.5.6.15}
+!92 = !{float (float)* @_ZSt3expf.5}
+!93 = !{float (float)* @_ZSt4sqrtf.7.12}
+!94 = !{float (float)* @_ZSt3logf.8.10}
+!95 = !{i32 6, i32 6, i32 6, i32 6, i32 6, i32 -1, i32 4, i32 1, i32 3}
+!96 = !{i32 1, !4, i32 1, !9, i32 1, !11, i32 1, !14, i32 1, !16, i32 1, !0, i32 1, !65, i32 1, !62, i32 1, !62}
+!97 = !{!5, !12, i1 false, i2 1}
+!98 = !{!5, !15, i1 false, i2 1}
+!99 = !{!5, !17, i1 false, i2 1}
+!100 = !{!5, !101, i1 false, i2 1}
+!101 = !{double 0x3FCC9F25C5BFEDD9, double 1.000000e+00}
+!102 = !{!103, !104, i1 false, i2 1}
+!103 = !{!"fixp", i32 -32, i32 30}
+!104 = !{double 0xBFEEED14A8FB748A, double 0x3FECF14E48CEF6CB}
+!105 = !{!106, !107, i1 false, i2 1}
+!106 = !{!"fixp", i32 -32, i32 23}
+!107 = !{double 0xC05593FFE55F5136, double 0x405FE85FD5569E07}
+!108 = !{!106, !109, i1 false, i2 1}
+!109 = !{double 0xC055BD997EF8EAD0, double 0x405FE7A8A79812D4}
+!110 = !{!5, !111, i1 false, i2 1}
+!111 = !{double 0x3F547AE140000000, double 0x3FDB0A3D70A3D70B}
+!112 = !{!5, !113, i1 false, i2 1}
+!113 = !{double 0x3F86E5B7D16657E1, double 6.500000e-01}
+!114 = !{!5, !115, i1 false, i2 1}
+!115 = !{double 0x3FD3B0737D161328, double 0x3FED6648C40845C2}
+!116 = !{!5, i1 false, !7, i2 1}
+!117 = !{!5, i1 false, i1 false, i2 1}
+!118 = !{!103, i1 false, i1 false, i2 1}
+!119 = !{!106, i1 false, i1 false, i2 1}
+!120 = !{!121, !122, !7, i2 1}
+!121 = !{!"fixp", i32 32, i32 30}
+!122 = !{double 0x3FD8590B21642C85, double 0x4003C3C3C3C3C3C3}
+!123 = !{!103, !104, !7, i2 1}
+!124 = !{!5, !125, i1 false, i2 1}
+!125 = !{double 0x3F647AE147AE147C, double 0x3FDB0A3D70A3D70B}
+!126 = !{!5, !127, i1 false, i2 1}
+!127 = !{double 0x3F547AE147AE147C, double 0x3FCB0A3D70A3D70B}
+!128 = !{!5, !129, i1 false, i2 1}
+!129 = !{double 0x3F547AE140000000, double 0x3FCB0A3D80000000}
+!130 = !{!5, !131, i1 false, i2 1}
+!131 = !{double 0x3F9D70A3D68F5C29, double 0x3FE0B851EB851EB9}
+!132 = !{!5, !133, i1 false, i2 1}
+!133 = !{double 0x3F578D4FDED91688, double 0x3FE0B851EB851EB9}
+!134 = !{!135, !136, i1 false, i2 1}
+!135 = !{!"fixp", i32 -32, i32 29}
+!136 = !{double 0xBFEEE14E010C07FF, double 0x3FF6D4D01A2A0AC2}
+!137 = distinct !{float (float)* @_Z4CNDFf.1}
+!138 = !{float (float)* @_Z4CNDFf.1}
+!139 = !{!103, !140, !13, i2 1}
+!140 = !{double -1.000000e-01, double -2.750000e-02}
+!141 = !{!103, !142, !13, i2 1}
+!142 = !{double -1.000000e-01, double 0xBF56872B020C49BB}
+!143 = !{!5, !144, !13, i2 1}
+!144 = !{double 0x3FECF46D99D52B3A, double 0x3FEFF4BE65C63590}
+!145 = !{float (float)* @_ZSt3expf.11}
+!146 = !{!5, !115, !7, i2 1}
+!147 = !{!63, !3, !7, i2 1}
+!148 = !{i1 false, !3, i1 false, i2 1}
+!149 = !{i32 1, !4}
+!150 = !{float (float)* @_ZSt3logf.8.10.13}
+!151 = !{i32 12}
+!152 = !{i32 1, !16}
+!153 = !{float (float)* @_ZSt3expf.11.20}
+!154 = !{i32 1, !99}
+!155 = !{i1 false, !101, i1 false, i2 1}
+!156 = !{i32 1, !120}
+!157 = !{i1 false, !104, !7, i2 1}
+!158 = !{i32 1, !105}
+!159 = !{!106, !160, i1 false, i2 1}
+!160 = !{double 0xC05FE85FD5569E07, double 0x405FE85FD5569E07}
+!161 = !{!162, !163, i1 false, i2 1}
+!162 = !{!"fixp", i32 32, i32 0}
+!163 = !{double 0.000000e+00, double 0x7FF0000000000000}
+!164 = !{!165, !166, i1 false, i2 1}
+!165 = !{!"fixp", i32 -32, i32 26}
+!166 = !{double 0xC03D908D20000000, double 0x403E908D20000000}
+!167 = !{!168, !169, i1 false, i2 1}
+!168 = !{!"fixp", i32 -32, i32 21}
+!169 = !{double 0xC08C3D112B8E6220, double 0x408D3195948E6220}
+!170 = !{!171, !172, i1 false, i2 1}
+!171 = !{!"fixp", i32 -32, i32 16}
+!172 = !{double 0xC0DAF8CF6F6A35CE, double 0x40DBE25C1C0EA8DF}
+!173 = !{i1 false, !174, i1 false, i2 0}
+!174 = !{double 0xC129C3191133C2BF, double 0x412AA22BF2143806}
+!175 = !{i1 false, !176, i1 false, i2 0}
+!176 = !{double 0xC1789B470E577C5D, double 0x417970586DE81E1D}
+!177 = !{!178, !179, i1 false, i2 1}
+!178 = !{!"fixp", i32 -32, i32 5}
+!179 = !{double 0xC18125F538E94B80, double 0x4181AD87ED4FC380}
+!180 = !{!178, !181, i1 false, i2 1}
+!181 = !{double 0xC18125F4ED5F4000, double 0x4181AD879F37A000}
+!182 = !{!178, !183, i1 false, i2 1}
+!183 = !{double 0xC1805DE260000000, double 0x4180EB9A80000000}
+!184 = !{!162, i1 false, i1 false, i2 1}
+!185 = !{!165, i1 false, i1 false, i2 1}
+!186 = !{!168, i1 false, i1 false, i2 1}
+!187 = !{!171, i1 false, i1 false, i2 1}
+!188 = !{!178, i1 false, i1 false, i2 1}
+!189 = !{!106, !190, i1 false, i2 1}
+!190 = !{double 0xC05FE85FD5569E07, double 0x405593FFE55F5136}
+!191 = !{!192, !193, i1 false, i2 1}
+!192 = !{!"fixp", i32 -32, i32 17}
+!193 = !{double 0xC0CFD0D11C0C3A62, double 0x40CFD0D11C0C3A62}
+!194 = !{!195, !196, i1 false, i2 1}
+!195 = !{!"fixp", i32 -32, i32 18}
+!196 = !{double 0xC0BFD0D11C0C3A62, double 0x40BFD0D11C0C3A62}
+!197 = !{!165, !198, i1 false, i2 1}
+!198 = !{double 0xC03D908D0F6A9E59, double 0x403D908D0F6A9E59}
+!199 = !{!165, !200, i1 false, i2 1}
+!200 = !{double 0xC03D908D20000000, double 0x403D908D20000000}
+!201 = !{!165, !202, i1 false, i2 1}
+!202 = !{double 0xC03C908D20000000, double 0x403E908D20000000}
+!203 = !{!103, !204, i1 false, i2 1}
+!204 = !{double 0xBFA15166F7E2A8A2, double 0x3FA0C05A2CB46BAF}
+!205 = !{!103, !206, i1 false, i2 1}
+!206 = !{double 0xBFA1516700000000, double 0x3FA0C05A40000000}
+!207 = !{!208, !174, i1 false, i2 1}
+!208 = !{!"fixp", i32 -32, i32 11}
+!209 = !{!210, !176, i1 false, i2 1}
+!210 = !{!"fixp", i32 -32, i32 6}
+!211 = !{!212, !213, i1 false, i2 1}
+!212 = !{!"fixp", i32 -32, i32 27}
+!213 = !{double 0xC022E282CED82048, double 0x40238608C8ACB810}
+!214 = !{!212, !215, i1 false, i2 1}
+!215 = !{double 0xC022E282E0000000, double 0x40238608E0000000}
+!216 = !{!217, !218, i1 false, i2 1}
+!217 = !{!"fixp", i32 -32, i32 22}
+!218 = !{double 0xC074D19E747A4844, double 0x4074233F3AC093FC}
+!219 = !{!217, !220, i1 false, i2 1}
+!220 = !{double 0xC074D19E80000000, double 0x4074233F40000000}
+!221 = !{!222, !223, i1 false, i2 1}
+!222 = !{!"fixp", i32 -32, i32 15}
+!223 = !{double 0xC0E806623387CF3E, double 0x40E8D66A4DAE3FFB}
+!224 = !{!222, !225, i1 false, i2 1}
+!225 = !{double 0xC0E8066240000000, double 0x40E8D66A60000000}
+!226 = !{!222, !227, i1 false, i2 1}
+!227 = !{double 0xC0E830057D000000, double 0x40E8FEB0DE800000}
+!228 = !{i1 false, !229, i1 false, i2 0}
+!229 = !{double 0xC13840D16527B2D6, double 0x413775AE45F599B2}
+!230 = !{i1 false, !231, i1 false, i2 0}
+!231 = !{double 0xC13840D180000000, double 0x413775AE60000000}
+!232 = !{!233, !234, i1 false, i2 1}
+!233 = !{!"fixp", i32 -32, i32 10}
+!234 = !{double 0xC1390251ABE80000, double 0x41383DA3E6F40000}
+!235 = !{i1 false, !236, i1 false, i2 0}
+!236 = !{double 0xC1805DE249530D3D, double 0x4180EB9A71AF86EC}
+!237 = !{i1 false, !183, i1 false, i2 0}
+!238 = !{float (float)* @_ZSt3expf.5.6.15.16}
+!239 = !{i32 1, !194}
+!240 = !{i1 false, !163, i1 false, i2 1}
+!241 = !{i32 1, !108}
+!242 = !{!106, !243, i1 false, i2 1}
+!243 = !{double 0xC05FE7A8A79812D4, double 0x405FE7A8A79812D4}
+!244 = !{!165, !245, i1 false, i2 1}
+!245 = !{double 0xC03D8FE360000000, double 0x403E8FE360000000}
+!246 = !{!168, !247, i1 false, i2 1}
+!247 = !{double 0xC08C3BD237799B20, double 0x408D305152799B20}
+!248 = !{!171, !249, i1 false, i2 1}
+!249 = !{double 0xC0DAF70904789908, double 0x40DBE08B8F0C65E1}
+!250 = !{i1 false, !251, i1 false, i2 0}
+!251 = !{double 0xC129C0D7FDCA1D28, double 0x412A9FDC5A428057}
+!252 = !{i1 false, !253, i1 false, i2 0}
+!253 = !{double 0xC1789897406252D3, double 0x41796D96233466D6}
+!254 = !{!178, !255, i1 false, i2 1}
+!255 = !{double 0xC181241A7D43FA00, double 0x4181ABA1596C6180}
+!256 = !{!178, !257, i1 false, i2 1}
+!257 = !{double 0xC181241A31BBA000, double 0x4181ABA10B55F000}
+!258 = !{!178, !259, i1 false, i2 1}
+!259 = !{double 0xC1805C18E0000000, double 0x4180E9C4C0000000}
+!260 = !{!106, !261, i1 false, i2 1}
+!261 = !{double 0xC05FE7A8A79812D4, double 0x4055BD997EF8EAD0}
+!262 = !{!192, !263, i1 false, i2 1}
+!263 = !{double 0xC0CFCF63D3232B35, double 0x40CFCF63D3232B35}
+!264 = !{!195, !265, i1 false, i2 1}
+!265 = !{double 0xC0BFCF63D3232B35, double 0x40BFCF63D3232B35}
+!266 = !{!165, !267, i1 false, i2 1}
+!267 = !{double 0xC03D8FE355313E4E, double 0x403D8FE355313E4E}
+!268 = !{!165, !269, i1 false, i2 1}
+!269 = !{double 0xC03D8FE360000000, double 0x403D8FE360000000}
+!270 = !{!165, !271, i1 false, i2 1}
+!271 = !{double 0xC03C8FE360000000, double 0x403E8FE360000000}
+!272 = !{!103, !273, i1 false, i2 1}
+!273 = !{double 0xBFA151CA692CFD62, double 0x3FA0C0B73760BD07}
+!274 = !{!103, !275, i1 false, i2 1}
+!275 = !{double 0xBFA151CA80000000, double 0x3FA0C0B740000000}
+!276 = !{!208, !251, i1 false, i2 1}
+!277 = !{!210, !253, i1 false, i2 1}
+!278 = !{!212, !279, i1 false, i2 1}
+!279 = !{double 0xC022E21660C1B791, double 0x4023859C5A964F58}
+!280 = !{!212, !281, i1 false, i2 1}
+!281 = !{double 0xC022E21680000000, double 0x4023859C60000000}
+!282 = !{!217, !283, i1 false, i2 1}
+!283 = !{double 0xC074D0B737B36103, double 0x4074225BC6670BCE}
+!284 = !{!217, !285, i1 false, i2 1}
+!285 = !{double 0xC074D0B740000000, double 0x4074225BE0000000}
+!286 = !{!222, !287, i1 false, i2 1}
+!287 = !{double 0xC0E804CD6F068F30, double 0x40E8D4CC828A7CB6}
+!288 = !{!222, !289, i1 false, i2 1}
+!289 = !{double 0xC0E804CD80000000, double 0x40E8D4CCA0000000}
+!290 = !{!222, !291, i1 false, i2 1}
+!291 = !{double 0xC0E82E6EEE800000, double 0x40E8FD1157C00000}
+!292 = !{i1 false, !293, i1 false, i2 0}
+!293 = !{double 0xC1383EB6AC8832F9, double 0x413773A0C599A24F}
+!294 = !{i1 false, !295, i1 false, i2 0}
+!295 = !{double 0xC1383EB6C0000000, double 0x413773A0E0000000}
+!296 = !{!233, !297, i1 false, i2 1}
+!297 = !{double 0xC139002A37740000, double 0x41383B896ABE0000}
+!298 = !{i1 false, !299, i1 false, i2 0}
+!299 = !{double 0xC1805C18CD5276C2, double 0x4180E9C4A9C24B59}
+!300 = !{i1 false, !259, i1 false, i2 0}
+!301 = !{float (float)* @_ZSt3expf.2.3.18.19}
+!302 = !{i32 1, !264}
+!303 = !{i32 1, !141}
+!304 = !{i1 false, !144, !13, i2 1}
